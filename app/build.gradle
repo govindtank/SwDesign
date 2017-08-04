@@ -50,6 +50,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     /// Support Libraries
+    compile "com.android.support:design:$support_version"
     compile "com.android.support.constraint:constraint-layout:$constraint_version"
     compile "com.android.support:appcompat-v7:$support_version"
     compile "com.android.support:recyclerview-v7:$support_version"

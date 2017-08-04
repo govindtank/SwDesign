@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="AppBlackTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
