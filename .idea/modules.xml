@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SWBaseKotlin.iml" filepath="$PROJECT_DIR$/SWBaseKotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SwDesign.iml" filepath="$PROJECT_DIR$/SwDesign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/swutils/swutils.iml" filepath="$PROJECT_DIR$/swutils/swutils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/swutils/swutils.iml" filepath="$PROJECT_DIR$/swutils/swutils.iml" />
+    </modules>
+  </component>
+</project>
