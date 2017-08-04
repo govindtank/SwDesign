@@ -10,7 +10,7 @@ import android.view.inputmethod.InputMethodManager
  * Created by on 2017/5/3.
  */
 
-open class SwAppCompatActivity : AppCompatActivity() {
+open class SwAppCompatActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
