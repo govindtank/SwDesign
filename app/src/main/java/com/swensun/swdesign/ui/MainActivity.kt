@@ -69,7 +69,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when(item.itemId) {
-            R.id.nav_recycler_view -> {}
+            R.id.nav_recycler_view -> {
+                startActivity(Intent(this, RecyclerViewActivity::class.java))
+            }
             R.id.nav_scroll -> {}
         }
         drawer_layout.closeDrawer(GravityCompat.START)

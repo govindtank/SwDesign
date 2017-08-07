@@ -1,5 +1,7 @@
 package com.swensun.swdesign.base
 
+import android.arch.lifecycle.LifecycleRegistry
+import android.arch.lifecycle.LifecycleRegistryOwner
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -10,7 +12,10 @@ import android.view.inputmethod.InputMethodManager
  * Created by on 2017/5/3.
  */
 
-open class SwAppCompatActivity : AppCompatActivity(){
+open class SwAppCompatActivity : AppCompatActivity(), LifecycleRegistryOwner{
+    override fun getLifecycle(): LifecycleRegistry {
+        return LifecycleRegistry(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

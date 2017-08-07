@@ -47,7 +47,12 @@
         <activity
             android:name=".ui.LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".ui.MainActivity">
+        </activity>
+        <activity
+            android:name=".ui.RecyclerViewActivity"
+            android:label="@string/title_activity_recycler_view"
+            android:theme="@style/AppTheme.NoActionBar"
             >
         </activity>
     </application>
