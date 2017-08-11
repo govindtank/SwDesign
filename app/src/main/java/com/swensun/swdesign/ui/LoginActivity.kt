@@ -17,8 +17,8 @@ class LoginActivity : AppCompatActivity(){
     }
 
     private fun attemptLogin() {
-        account.error = null
-        password.error = null
+        account_input_layout.error = null
+        password_input_layout.error = null
 
         val accountString = account.text.toString()
         val passwordString = password.text.toString()
@@ -26,22 +26,20 @@ class LoginActivity : AppCompatActivity(){
         var cancel = false
         var focusView: View? = null
 
-        if (!TextUtils.isEmpty(accountString) && !isPasswordValid(passwordString)) {
-            password.error = getString(R.string.error_invalid_password)
-            focusView = password
-            cancel = true
-        }
 
         if (TextUtils.isEmpty(accountString)) {
-           account.error = getString(R.string.error_field_required)
+            account_input_layout.error = getString(R.string.error_field_required)
             focusView = account
             cancel = true
         } else if (!isEmailValid(accountString)) {
-            account.error = getString(R.string.error_invalid_email)
+            account_input_layout.error = getString(R.string.error_invalid_email)
             focusView = account
             cancel = true
+        } else if (!TextUtils.isEmpty(accountString) && !isPasswordValid(passwordString)) {
+            password_input_layout.error = getString(R.string.error_invalid_password)
+            focusView = password
+            cancel = true
         }
-
         if (cancel) {
             focusView?.requestFocus()
         } else {
