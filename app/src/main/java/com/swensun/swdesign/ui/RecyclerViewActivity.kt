@@ -4,9 +4,6 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.view.View
-import android.view.ViewGroup
 import com.swensun.swdesign.R
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -16,7 +13,7 @@ import java.util.concurrent.TimeUnit
 
 class RecyclerViewActivity : AppCompatActivity() {
 
-    val adapter = RecyclerViewAdapter()
+    val adapter = RecyclerViewAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,25 +39,11 @@ class RecyclerViewActivity : AppCompatActivity() {
                         swipe_refresh_layout_recycler_view.isRefreshing = false
                     }
         }
+
+        var datas = arrayListOf<String>().apply { (0..20).forEach { add(it.toString()) } }
+        adapter.setItemList(datas)
     }
 
-    inner class RecyclerViewAdapter : RecyclerView.Adapter<NormalItemViewHolder>() {
-        override fun onBindViewHolder(holder: NormalItemViewHolder?, position: Int) {
-
-        }
-
-        override fun getItemCount(): Int {
-            return 20
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): NormalItemViewHolder {
-            val view = layoutInflater.inflate(R.layout.view_normal_item, parent, false)
-            return NormalItemViewHolder(itemView = view)
-        }
-
-    }
-
-    class NormalItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 }
 
 
