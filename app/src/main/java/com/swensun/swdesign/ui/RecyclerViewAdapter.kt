@@ -83,12 +83,7 @@ class RecyclerViewAdapter(val context: Context) : RecyclerView.Adapter<RecyclerV
             }
         }
     }
-
-    class FooterItemHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        init {
-
-        }
-    }
+    class FooterItemHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     enum class ViewHolderType {
         NORMAL, FOOTER
