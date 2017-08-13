@@ -28,4 +28,5 @@
     <string name="login_tips">请输入电话或者邮箱</string>
     <string name="password_tips">请输入密码</string>
     <string name="title_activity_recycler_view">RecyclerViewActivity</string>
+
 </resources>

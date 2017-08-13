@@ -42,7 +42,7 @@ class FabBehavior : FloatingActionButton.Behavior() {
     }
 
     private fun show(child: FloatingActionButton) {
-        val animtor = child.animate().setDuration(300).setInterpolator(INTERPOLATOR).translationY(0f)
+        child.animate().setDuration(300).setInterpolator(INTERPOLATOR).translationY(0f)
                 .setListener(object : Animator.AnimatorListener {
                     override fun onAnimationRepeat(animation: Animator?) {
 
@@ -66,7 +66,7 @@ class FabBehavior : FloatingActionButton.Behavior() {
     }
 
     private fun hide(child: FloatingActionButton) {
-        val animtor = child.animate().setDuration(300).setInterpolator(INTERPOLATOR).translationY(viewY)
+        child.animate().setDuration(300).setInterpolator(INTERPOLATOR).translationY(viewY)
                 .setListener(object : Animator.AnimatorListener {
                     override fun onAnimationRepeat(animation: Animator?) {
 
