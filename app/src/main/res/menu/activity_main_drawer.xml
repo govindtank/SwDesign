@@ -22,6 +22,11 @@
             android:title="ViewPager"
             android:icon="@drawable/ic_view_pager_black_24dp"
             />
+        <item
+            android:id="@+id/nav_animator"
+            android:title="Animator"
+            android:icon="@drawable/ic_animator_black_48dp"
+            />
     </group>
 
     <item android:title="Communicate">

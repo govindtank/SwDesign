@@ -77,6 +77,22 @@
             android:parentActivityName=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".ui.animator.AnimatorActivity"
+            android:label="@string/title_activity_animator"
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ui.animator.CircularRevealActivity"
+            android:label="@string/title_activity_circular_reveal"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ui.animator.TransitionActivity"
+            android:label="@string/title_activity_transition"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

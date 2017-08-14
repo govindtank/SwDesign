@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.swensun.swdesign.R
+import com.swensun.swdesign.ui.animator.AnimatorActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
 import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
 import com.swensun.swdesign.ui.scroll.ScrollingIntroActivity
@@ -81,6 +82,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_view_pager -> {
                 startActivity(Intent(this, ViewPagerActivity::class.java))
+            }
+            R.id.nav_animator -> {
+                startActivity(Intent(this, AnimatorActivity::class.java))
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)

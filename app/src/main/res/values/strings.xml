@@ -35,5 +35,8 @@
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
     <string name="title_activity_view_pager">ViewPagerActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_animator">AnimatorActivity</string>
+    <string name="title_activity_circular_reveal">CircularRevealActivity</string>
+    <string name="title_activity_transition">TransitionActivity</string>
 
 </resources>

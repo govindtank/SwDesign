@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.swensun.swdesign.ui.animator.CircularRevealActivity"
+    tools:showIn="@layout/activity_circular_reveal">
+
+    <TextView
+        android:id="@+id/describe_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"
+        android:text="当您显示或隐藏一组 UI 元素时，揭露动画可为用户提供视觉连续性。ViewAnimationUtils.createCircularReveal() 方法让您能够为裁剪区域添加动画以揭露或隐藏视图。"
+        />
+
+    <Button
+        android:id="@+id/btn_style1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/describe_text"
+        android:text="hide"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimaryDark"
+        />
+
+    <ImageView
+        android:id="@+id/image_style1"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_style1"
+        android:layout_margin="8dp"
+        android:background="@drawable/bg_circle"/>
+
+    <Button
+        android:id="@+id/btn_style2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/describe_text"
+        android:text="hide"
+        android:textColor="@android:color/white"
+        android:background="@color/colorAccent"
+        />
+
+    <ImageView
+        android:id="@+id/image_style2"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_style2"
+        android:layout_margin="8dp"
+        android:background="@color/colorAccent"/>
+
+</android.support.constraint.ConstraintLayout>
