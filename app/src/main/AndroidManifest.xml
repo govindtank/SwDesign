@@ -71,6 +71,12 @@
             android:name=".ui.bottom.BottomNavigationActivity"
             android:label="@string/title_activity_bottom_navigation">
         </activity>
+        <activity
+            android:name=".ui.viewpager.ViewPagerActivity"
+            android:label="@string/title_activity_view_pager"
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

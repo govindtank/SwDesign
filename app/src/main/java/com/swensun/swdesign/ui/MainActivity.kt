@@ -14,6 +14,7 @@ import com.swensun.swdesign.R
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
 import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
 import com.swensun.swdesign.ui.scroll.ScrollingIntroActivity
+import com.swensun.swdesign.ui.viewpager.ViewPagerActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
@@ -77,6 +78,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_bottom_navigation -> {
                 startActivity(Intent(this, BottomNavigationActivity::class.java))
+            }
+            R.id.nav_view_pager -> {
+                startActivity(Intent(this, ViewPagerActivity::class.java))
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
