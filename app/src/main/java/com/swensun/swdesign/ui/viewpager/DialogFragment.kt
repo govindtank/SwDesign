@@ -136,7 +136,7 @@ class DialogFragment : Fragment() {
             bottomSheetDialog.show()
         }
         btn_dialog_10.setOnClickListener {
-            val fullDialog = Dialog(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+            val fullDialog = Dialog(context, R.style.DialogFullscreen)
             fullDialog.setContentView(R.layout.dialog_full_screen)
             val closeView = fullDialog.findViewById(R.id.img_dialog_fullscreen_close)
             closeView.setOnClickListener {

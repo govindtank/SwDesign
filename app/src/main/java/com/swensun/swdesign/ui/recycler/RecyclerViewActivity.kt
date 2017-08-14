@@ -2,8 +2,13 @@ package com.swensun.swdesign.ui.recycler
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.SearchView
+import android.view.Menu
+import android.view.MenuItem
+import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
 import com.swensun.swdesign.utils.recyclePictureList
 import io.reactivex.Observable
@@ -47,6 +52,38 @@ class RecyclerViewActivity : AppCompatActivity() {
         }
         adapter.setItemList(datas)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_recycler, menu)
+        val menuItem = menu.findItem(R.id.action_search)
+        val searchView = MenuItemCompat.getActionView(menuItem) as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Logger.d(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                Logger.d(newText)
+                return false
+            }
+
+        })
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.action_search) {
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+
 
 }
 
