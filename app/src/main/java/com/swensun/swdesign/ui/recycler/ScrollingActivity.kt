@@ -1,4 +1,4 @@
-package com.swensun.swdesign.ui
+package com.swensun.swdesign.ui.recycler
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

@@ -28,5 +28,10 @@
     <string name="login_tips">请输入电话或者邮箱</string>
     <string name="password_tips">请输入密码</string>
     <string name="title_activity_recycler_view">RecyclerViewActivity</string>
+    <string name="title_activity_scrolling_intro">ScrollingIntroActivity</string>
+    <string name="large_text">
+        Material Design语言的一些重要功能包括 系统字体Roboto的升级版本 ，同时颜色更鲜艳，动画效果更突出。杜拉特还简要谈到了新框架的一些变化——这个新框架也于今天在 google.com/design 公开发布。谷歌的想法是让谷歌平台上的开发者掌握这个新框架，从而让所有应用就有统一的外观，就像是苹果向开发者提出的设计原则一样。谷歌还基于这种新的设计语言对本公司旗舰应用进行了重新设计，包括安卓和网页端的Gmail和Calendar。大家可能还会记得，最近曾看到过有关这些变动的文章， 有些博客 已经掌握了外泄截屏，显示经过了重新设计的Gmail，界面更干净、更简约。在安卓平台上，这种新界面被称为Material，支持各种新动画效果，具有内置的实时UI阴影，以及可在不同屏幕之间切换的hero元素。
+    </string>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.swensun.swdesign.ui
+package com.swensun.swdesign.ui.recycler
 
 import android.app.Activity
 import android.app.ActivityOptions
@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.swensun.swdesign.R
+import com.swensun.swdesign.ui.recycler.ScrollingActivity
 
 /**
  * Created by swensun on 2017/8/12.

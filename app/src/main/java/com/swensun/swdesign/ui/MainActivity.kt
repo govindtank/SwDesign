@@ -11,6 +11,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.swensun.swdesign.R
+import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
+import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
+import com.swensun.swdesign.ui.scroll.ScrollingIntroActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
@@ -69,7 +72,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_recycler_view -> {
                 startActivity(Intent(this, RecyclerViewActivity::class.java))
             }
-            R.id.nav_scroll -> {}
+            R.id.nav_scroll -> {
+                startActivity(Intent(this, ScrollingIntroActivity::class.java))
+            }
+            R.id.nav_bottom_navigation -> {
+                startActivity(Intent(this, BottomNavigationActivity::class.java))
+            }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
