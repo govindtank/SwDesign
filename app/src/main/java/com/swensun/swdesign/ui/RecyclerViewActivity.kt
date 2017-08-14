@@ -45,8 +45,6 @@ class RecyclerViewActivity : AppCompatActivity() {
                         swipe_refresh_layout_recycler_view.isRefreshing = false
                     }
         }
-
-
         adapter.setItemList(datas)
     }
 

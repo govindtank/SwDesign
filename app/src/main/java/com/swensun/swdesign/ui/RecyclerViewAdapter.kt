@@ -1,5 +1,7 @@
 package com.swensun.swdesign.ui
 
+import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
@@ -72,7 +74,9 @@ class RecyclerViewAdapter(val context: Context) : RecyclerView.Adapter<RecyclerV
             itemView.setOnClickListener {
                 val intent = Intent(context, ScrollingActivity::class.java)
                 intent.putExtra(LIST_ID, adapterPosition)
-                context.startActivity(intent)
+//                context.startActivity(intent)
+                context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(context as Activity,
+                        imageView, "shareView").toBundle())
             }
         }
     }
