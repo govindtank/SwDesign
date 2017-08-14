@@ -7,6 +7,60 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.swensun.swdesign.ui.MainActivity"
-    tools:showIn="@layout/app_bar_main2">
+    tools:showIn="@layout/app_bar_main">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:layout_margin="20dp"
+        >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            >
+
+            <ImageView
+                android:id="@+id/app_image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@mipmap/ic_launcher"
+                />
+
+
+            <TextView
+                android:id="@+id/intro_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/version_text"
+                app:layout_constraintLeft_toRightOf="@+id/app_image"
+                android:text="material design demo"
+                android:layout_margin="8dp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                />
+
+            <TextView
+                android:id="@+id/version_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/intro_text"
+                app:layout_constraintLeft_toRightOf="@+id/app_image"
+                android:text="版本号：1.0"
+                android:layout_margin="8dp"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
 
 </android.support.constraint.ConstraintLayout>
