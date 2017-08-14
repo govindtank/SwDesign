@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SWBaseKotlin123</string>
+    <string name="app_name">Parrot</string>
     <string name="title_home">Home123</string>
     <string name="title_dashboard">Dashboard123</string>
     <string name="title_notifications">Notifications123</string>
