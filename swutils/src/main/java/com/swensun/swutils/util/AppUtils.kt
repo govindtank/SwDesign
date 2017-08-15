@@ -5,4 +5,6 @@ package com.swensun.swutils.util
  */
 class AppUtils {
 
+
+
 }

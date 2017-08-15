@@ -20,5 +20,7 @@ class SwApp: Application() {
                 return BuildConfig.DEBUG
             }
         })
+        BaseApplication.application = this
     }
+
 }

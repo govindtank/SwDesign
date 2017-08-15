@@ -58,6 +58,8 @@ class RecyclerViewActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_recycler, menu)
         val menuItem = menu.findItem(R.id.action_search)
         val searchView = MenuItemCompat.getActionView(menuItem) as SearchView
+
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Logger.d(query)
@@ -81,12 +83,8 @@ class RecyclerViewActivity : AppCompatActivity() {
 //            MenuItemCompat.expandActionView(item)
             return true
         }
-
         return super.onOptionsItemSelected(item)
     }
-
-
-
 }
 
 

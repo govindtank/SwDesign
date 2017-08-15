@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.swensun.swdesign.App.packageInfo
 import com.swensun.swdesign.R
 import com.swensun.swdesign.ui.animator.AnimatorActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
@@ -18,6 +19,7 @@ import com.swensun.swdesign.ui.scroll.ScrollingIntroActivity
 import com.swensun.swdesign.ui.viewpager.ViewPagerActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 
@@ -42,6 +44,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             drawer_layout.closeDrawer(GravityCompat.START)
         }
 
+        setView()
+
+    }
+
+    private fun setView() {
+        version_text.text = "版本号：${packageInfo.versionName}"
     }
 
     override fun onBackPressed() {
