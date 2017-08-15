@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Material小例子</string>
-    <string name="title_home">主页</string>
-    <string name="title_dashboard">控制面板</string>
-    <string name="title_notifications">通知</string>
-    <string name="multilanguage">多语言</string>
-</resources>

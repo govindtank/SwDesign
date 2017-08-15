@@ -77,6 +77,8 @@ class RecyclerViewActivity : AppCompatActivity() {
         val id = item.itemId
 
         if (id == R.id.action_search) {
+//            TransitionManager.beginDelayedTransition(toolbar)
+//            MenuItemCompat.expandActionView(item)
             return true
         }
 
