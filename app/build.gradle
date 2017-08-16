@@ -36,6 +36,7 @@ ext {
     okhttp_version = "3.8.0"
     wire_version = "2.2.0"
     retrofit_version = "2.3.0"
+    anko_version = "0.10.1"
 }
 
 dependencies {
@@ -99,6 +100,8 @@ dependencies {
 
     //logger
     compile 'com.orhanobut:logger:2.1.1'
+
+    compile "org.jetbrains.anko:anko:$anko_version"
 
 }
 

@@ -1,6 +1,9 @@
 package com.swensun.swdesign.ui.recycler
 
 import android.app.ActivityOptions
+import android.arch.lifecycle.LifecycleRegistry
+import android.arch.lifecycle.LifecycleRegistryOwner
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -14,16 +17,23 @@ import android.widget.ImageView
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
 import com.swensun.swdesign.utils.recyclePictureList
+import com.swensun.swdesign.viewmodel.RecyclerViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_recycler_view.*
 import java.util.concurrent.TimeUnit
 
-class RecyclerViewActivity : AppCompatActivity() {
+class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
+    override fun getLifecycle(): LifecycleRegistry {
+        return LifecycleRegistry(this)
+    }
 
     val adapter = RecyclerViewAdapter(this)
     var datas: List<Int>  =  recyclePictureList
+    val viewModel: RecyclerViewModel by lazy {
+        ViewModelProviders.of(this).get(RecyclerViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

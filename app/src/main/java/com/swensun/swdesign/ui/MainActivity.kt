@@ -1,6 +1,9 @@
 package com.swensun.swdesign.ui
 
 import android.app.ActivityOptions
+import android.arch.lifecycle.LifecycleRegistry
+import android.arch.lifecycle.LifecycleRegistryOwner
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -13,18 +16,28 @@ import android.view.Menu
 import android.view.MenuItem
 import com.swensun.swdesign.App.packageInfo
 import com.swensun.swdesign.R
+import com.swensun.swdesign.database.DataBaseManager
 import com.swensun.swdesign.ui.animator.AnimatorActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
 import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
 import com.swensun.swdesign.ui.scroll.ScrollingIntroActivity
 import com.swensun.swdesign.ui.viewpager.ViewPagerActivity
+import com.swensun.swdesign.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LifecycleRegistryOwner {
+    override fun getLifecycle(): LifecycleRegistry {
+        return LifecycleRegistry(this)
+    }
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProviders.of(this).get(MainViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +67,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        val movies = resources.openRawResource(R.raw.doubanmovie).bufferedReader().use { it.readText() }
 //        val doubanMovie = Gson().fromJson(movies, DoubanMovie::class.java)
 //        Logger.d(doubanMovie.title)
+        app_info_layout.onClick {
+            doAsync {
+                DataBaseManager.saveDoubanMovieEntnties()
+            }
+        }
 
     }
 
