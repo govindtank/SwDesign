@@ -20,6 +20,10 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/explore</item>
+        <item name="android:windowReenterTransition">@transition/explore</item>
+        <item name="android:windowReturnTransition">@transition/fade</item>
     </style>
 
     <style name="MainTheme.NoActionBar" parent="AppTheme">

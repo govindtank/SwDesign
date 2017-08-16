@@ -1,13 +1,16 @@
 package com.swensun.swdesign.ui.recycler
 
+import android.app.ActivityOptions
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
-import android.view.Menu
-import android.view.MenuItem
+import android.view.*
+import android.widget.ImageView
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
 import com.swensun.swdesign.utils.recyclePictureList
@@ -28,11 +31,6 @@ class RecyclerViewActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
-        }
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "这是一个RecyclerView", Snackbar.LENGTH_LONG)
-                    .show()
         }
 
         recycler_view.layoutManager = LinearLayoutManager(this)
@@ -85,6 +83,62 @@ class RecyclerViewActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    inner class RecyclerViewAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+        var mItemList = arrayListOf<Int>()
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder? {
+            val view = LayoutInflater.from(context).inflate(R.layout.view_normal_item, parent, false)
+            return NormalItemViewHolder(itemView = view)
+        }
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            (holder as NormalItemViewHolder).updateView(mItemList[position])
+        }
+
+        override fun getItemCount(): Int {
+            return mItemList.size
+        }
+
+        override fun getItemViewType(position: Int): Int {
+            return ViewHolderType.NORMAL.ordinal
+        }
+
+        fun setItemList(datas: List<Int>) {
+            mItemList.clear()
+            mItemList.addAll(datas)   //list的copy
+            notifyDataSetChanged()
+        }
+
+
+    }
+
+    inner class NormalItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val imageView = itemView.findViewById(R.id.view_recycler_image) as ImageView
+//        val textView = itemView.findViewById(R.id.view_recycler_text) as TextView
+
+        fun updateView(drawable: Int) {
+//            Glide.with(context).load(drawable).into(imageView)
+//            textView.text = "这是第 $adapterPosition 张图片"
+
+        }
+        init {
+            itemView.setOnClickListener {
+                val intent = Intent(this@RecyclerViewActivity, ScrollingActivity::class.java)
+                intent.putExtra("listID", adapterPosition)
+//                context.startActivity(intent)
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this@RecyclerViewActivity,
+                        imageView, "shareView").toBundle())
+            }
+        }
+    }
+
+    class FooterItemHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+}
+
+enum class ViewHolderType {
+    NORMAL, FOOTER
 }
 
 

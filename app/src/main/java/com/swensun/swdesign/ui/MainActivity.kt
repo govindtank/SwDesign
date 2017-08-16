@@ -1,5 +1,6 @@
 package com.swensun.swdesign.ui
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -50,6 +51,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setView() {
         version_text.text = "版本号：${packageInfo.versionName}"
+//        val movies = resources.openRawResource(R.raw.doubanmovie).bufferedReader().use { it.readText() }
+//        val doubanMovie = Gson().fromJson(movies, DoubanMovie::class.java)
+//        Logger.d(doubanMovie.title)
+
     }
 
     override fun onBackPressed() {
@@ -80,19 +85,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when(item.itemId) {
             R.id.nav_recycler_view -> {
-                startActivity(Intent(this, RecyclerViewActivity::class.java))
+                startActivity(Intent(this, RecyclerViewActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }
             R.id.nav_scroll -> {
-                startActivity(Intent(this, ScrollingIntroActivity::class.java))
+                startActivity(Intent(this, ScrollingIntroActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }
             R.id.nav_bottom_navigation -> {
-                startActivity(Intent(this, BottomNavigationActivity::class.java))
+                startActivity(Intent(this, BottomNavigationActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }
             R.id.nav_view_pager -> {
-                startActivity(Intent(this, ViewPagerActivity::class.java))
+                startActivity(Intent(this, ViewPagerActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }
             R.id.nav_animator -> {
-                startActivity(Intent(this, AnimatorActivity::class.java))
+                startActivity(Intent(this, AnimatorActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
