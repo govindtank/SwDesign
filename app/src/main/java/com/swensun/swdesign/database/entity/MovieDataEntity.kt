@@ -1,22 +1,26 @@
 package com.swensun.swdesign.database.entity
 
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.ForeignKey
+import android.arch.persistence.room.ForeignKey.CASCADE
+import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
 
 /**
  * Created by macmini on 2017/8/16.
  */
-@Entity(tableName = "movie_data")
+@Entity(tableName = "movie_data", indices = arrayOf(Index(value = "movieId", unique = true)), foreignKeys = arrayOf(ForeignKey(entity = DoubanMovieEntity::class,
+        parentColumns = arrayOf("movieId"), childColumns = arrayOf("movieId"),
+        onDelete = CASCADE, onUpdate = CASCADE)))
 class MovieDataEntity {
     @PrimaryKey
     var movieId = 0
+    var type = MovieDataType.TYPE.ordinal
+    var typeData = ""
+    var name = ""
+    var logo = ""
 
 }
 
-enum class MovieDataType {
-    TYPE, // 剧情， 动作之类
-    CAST, // 演员
-    DIRECTORS //导演
-}
 
 

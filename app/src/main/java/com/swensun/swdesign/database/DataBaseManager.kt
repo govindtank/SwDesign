@@ -33,5 +33,6 @@ object DataBaseManager {
             movies.add(doubanmovieEntity)
             db.doubanMovieDao().saveMovies(movies)
         }
+
     }
 }
