@@ -15,6 +15,7 @@ class DoubanMovieEntity {
     var id = 0
     var movieId: String = ""
     var title = ""
+    var oriTitle = ""
     var image: String = ""
     var score: String = ""
 }

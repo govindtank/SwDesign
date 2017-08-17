@@ -22,14 +22,18 @@ object DataBaseManager {
     }
 
     fun saveDoubanMovieEntnties(){
+        var gson = Gson()
         var movies = arrayListOf<DoubanMovieEntity>()
         var movieDatas = arrayListOf<MovieDataEntity>()
         val movieTop250 = BaseApplication.application.resources.openRawResource(R.raw.doubanmovie)
                 .bufferedReader().use { it.readText() }
-        val doubanMovie = Gson().fromJson(movieTop250, DoubanMovie::class.java)
+        val doubanMovie = gson.fromJson(movieTop250, DoubanMovie::class.java)
         doubanMovie.subjects.forEach {
             val doubanmovieEntity = DoubanMovieEntity()
             doubanmovieEntity.title = it.title
+            if (!it.original_title.isNullOrBlank()) {
+                doubanmovieEntity.oriTitle = it.original_title
+            }
             doubanmovieEntity.movieId = it.id
             doubanmovieEntity.score = it.rating.average.toString()
             doubanmovieEntity.image = it.images.medium
@@ -40,27 +44,28 @@ object DataBaseManager {
                 movieData.movieId = doubanmovieEntity.movieId
                 movieData.typeData = it
                 movieDatas.add(movieData)
+
             }
 
             it.directors.forEach {
                 val movieData = MovieDataEntity().apply { type = MovieDataType.DIRECTORS.ordinal }
                 movieData.movieId = doubanmovieEntity.movieId
                 movieData.name = it.name
-                movieData.url = it.alt
-                movieData.logo = it.avatars.small
+                movieData.url = it.alt ?: ""
+                movieData.logo = it.avatars.small ?: ""
                 movieDatas.add(movieData)
             }
             it.casts.forEach {
                 val movieData = MovieDataEntity().apply { type = MovieDataType.CAST.ordinal }
                 movieData.movieId = doubanmovieEntity.movieId
                 movieData.name = it.name
-                movieData.url = it.alt
-                movieData.logo = it.avatars.small
+                movieData.url = it.alt ?: ""
+                movieData.logo = if (it.avatars == null) "" else (it.avatars.small ?: "")
                 movieDatas.add(movieData)
             }
         }
         db.doubanMovieDao().saveMovies(movies)
-        db.movieDataDao().saveMovieDatas(movieDatas)
+        val i = db.movieDataDao().saveMovieDatas(movieDatas)
     }
 
 

@@ -12,5 +12,5 @@ import com.swensun.swdesign.database.entity.MovieDataEntity
 @Dao
 interface MovieDataDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveMovieDatas(datas: List<MovieDataEntity>)
+    fun saveMovieDatas(datas: List<MovieDataEntity>): LongArray
 }

@@ -38,7 +38,6 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
     }
 
     val adapter = RecyclerViewAdapter(this)
-//    var datas: List<Int>  =  recyclePictureList
     var datas = arrayListOf<DoubanMovieEntity>()
     val viewModel: RecyclerViewModel by lazy {
         ViewModelProviders.of(this).get(RecyclerViewModel::class.java)
@@ -77,8 +76,6 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
         menuInflater.inflate(R.menu.menu_recycler, menu)
         val menuItem = menu.findItem(R.id.action_search)
         val searchView = MenuItemCompat.getActionView(menuItem) as SearchView
-
-
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Logger.d(query)
@@ -136,12 +133,14 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
 
     inner class NormalItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val imageView = itemView.findViewById(R.id.view_recycler_image) as ImageView
+        val movieKey =  itemView.findViewById(R.id.movie_key) as TextView
         val movieTitle = itemView.findViewById(R.id.movie_title) as TextView
         val movieScore = itemView.findViewById(R.id.score_content) as TextView
 
         fun updateView(entity: DoubanMovieEntity) {
             Glide.with(this@RecyclerViewActivity).load(entity.image).into(imageView)
             movieTitle.text = entity.title
+            movieKey.text = entity.oriTitle
             movieScore.text = entity.score
             itemView.setOnClickListener {
                 viewModel.setDoubanMovieEntity(entity)

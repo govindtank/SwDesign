@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:padding="5dp"
     android:foreground="?attr/selectableItemBackground"
     android:background="#ffffff"
     app:cardCornerRadius="2dp"
@@ -20,6 +24,7 @@
             android:id="@+id/view_recycler_image"
             android:layout_width="70dp"
             android:layout_height="100dp"
+            android:padding="2dp"
             android:scaleType="fitXY"
             android:foreground="?attr/selectableItemBackground"
             android:background="@color/colorAccent"
@@ -30,26 +35,26 @@
 
         <TextView
             android:id="@+id/movie_key"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@+id/view_recycler_image"
             android:layout_marginLeft="30dp"
             android:text="电影名称"
-            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/movie_title"
             app:layout_constraintHorizontal_chainStyle="packed"
+            android:ellipsize="end"
 
             />
         <TextView
             android:id="@+id/movie_title"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="电影名称"
             app:layout_constraintLeft_toLeftOf="@+id/movie_key"
             app:layout_constraintTop_toBottomOf="@+id/movie_key"
             app:layout_constraintBottom_toTopOf="@+id/score_key"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:ellipsize="end"
             />
         <TextView
             android:id="@+id/score_key"
@@ -60,6 +65,7 @@
             android:textColor="@color/colorPrimaryDark"
             app:layout_constraintTop_toBottomOf="@+id/movie_title"
             app:layout_constraintBottom_toTopOf="@+id/score_content"
+            android:textSize="12sp"
 
 
             />
@@ -71,7 +77,6 @@
             android:text="电影名称"
             app:layout_constraintTop_toBottomOf="@+id/score_key"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             />
 
     </android.support.constraint.ConstraintLayout>
