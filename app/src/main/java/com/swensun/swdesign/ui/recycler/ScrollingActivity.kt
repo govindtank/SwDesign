@@ -1,5 +1,8 @@
 package com.swensun.swdesign.ui.recycler
 
+import android.arch.lifecycle.LifecycleRegistry
+import android.arch.lifecycle.LifecycleRegistryOwner
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -7,11 +10,21 @@ import android.view.Window
 import android.view.WindowManager
 import com.bumptech.glide.Glide
 import com.swensun.swdesign.R
-import com.swensun.swdesign.utils.recyclePictureList
+import com.swensun.swdesign.database.entity.DoubanMovieEntity
+import com.swensun.swdesign.viewmodel.ScrollingViewModel
 import kotlinx.android.synthetic.main.activity_scrolling.*
-import kotlinx.android.synthetic.main.content_scrolling.*
 
-class ScrollingActivity : AppCompatActivity() {
+class ScrollingActivity : AppCompatActivity(), LifecycleRegistryOwner {
+
+    private val lifecycleRegistry = LifecycleRegistry(this)
+
+    override fun getLifecycle(): LifecycleRegistry {
+        return lifecycleRegistry
+    }
+
+    val viewModel: ScrollingViewModel by lazy {
+        ViewModelProviders.of(this).get(ScrollingViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +40,7 @@ class ScrollingActivity : AppCompatActivity() {
             it.setDisplayHomeAsUpEnabled(true)
         }
 
-        val drawableIndex = intent.getIntExtra("listID", 0)
-        setView(drawableIndex)
+        setView(viewModel.getDoubanMovieEntity())
     }
     //退出时的转场动画
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -41,9 +53,12 @@ class ScrollingActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setView(drawableIndex: Int) {
-        toolbar_layout.title = "图片：$drawableIndex"
-        content_text.text = "这是第 $drawableIndex 张图片"
-        Glide.with(this).load(recyclePictureList[drawableIndex]).into(image_scrolling_top)
+    private fun setView(doubanMovieEntity: DoubanMovieEntity) {
+        doubanMovieEntity.id.let {
+            toolbar_layout.title = "电影：$it"
+        }
+        doubanMovieEntity.image.let {
+            Glide.with(this).load(it).into(image_scrolling_top)
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.swensun.swdesign.ui.recycler
 import android.app.ActivityOptions
 import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
@@ -14,9 +15,11 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.view.*
 import android.widget.ImageView
+import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
-import com.swensun.swdesign.utils.recyclePictureList
+import com.swensun.swdesign.database.entity.DoubanMovieEntity
 import com.swensun.swdesign.viewmodel.RecyclerViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,12 +28,18 @@ import kotlinx.android.synthetic.main.content_recycler_view.*
 import java.util.concurrent.TimeUnit
 
 class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
+
+
+
+    private val lifecycleRegistry = LifecycleRegistry(this)
+
     override fun getLifecycle(): LifecycleRegistry {
-        return LifecycleRegistry(this)
+        return lifecycleRegistry
     }
 
     val adapter = RecyclerViewAdapter(this)
-    var datas: List<Int>  =  recyclePictureList
+//    var datas: List<Int>  =  recyclePictureList
+    var datas = arrayListOf<DoubanMovieEntity>()
     val viewModel: RecyclerViewModel by lazy {
         ViewModelProviders.of(this).get(RecyclerViewModel::class.java)
     }
@@ -51,14 +60,16 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
             Observable.timer(1, TimeUnit.SECONDS)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
-                        datas.apply {
-                            toSet().toList()
-                        }
-                        adapter.setItemList(datas)
+//                        adapter.setItemList(datas)
                         swipe_refresh_layout_recycler_view.isRefreshing = false
                     }
         }
-        adapter.setItemList(datas)
+        viewModel.moviesLiveData.observe(this, Observer {
+            it?.let {
+                adapter.setItemList(it)
+            }
+        })
+        viewModel.queryAllMovies()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -94,9 +105,10 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
         return super.onOptionsItemSelected(item)
     }
 
+
     inner class RecyclerViewAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-        var mItemList = arrayListOf<Int>()
+        var mItemList = arrayListOf<DoubanMovieEntity>()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder? {
             val view = LayoutInflater.from(context).inflate(R.layout.view_normal_item, parent, false)
@@ -115,29 +127,25 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
             return ViewHolderType.NORMAL.ordinal
         }
 
-        fun setItemList(datas: List<Int>) {
+        fun setItemList(datas: List<DoubanMovieEntity>) {
             mItemList.clear()
             mItemList.addAll(datas)   //list的copy
             notifyDataSetChanged()
         }
-
-
     }
 
     inner class NormalItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val imageView = itemView.findViewById(R.id.view_recycler_image) as ImageView
-//        val textView = itemView.findViewById(R.id.view_recycler_text) as TextView
+        val movieTitle = itemView.findViewById(R.id.movie_title) as TextView
+        val movieScore = itemView.findViewById(R.id.score_content) as TextView
 
-        fun updateView(drawable: Int) {
-//            Glide.with(context).load(drawable).into(imageView)
-//            textView.text = "这是第 $adapterPosition 张图片"
-
-        }
-        init {
+        fun updateView(entity: DoubanMovieEntity) {
+            Glide.with(this@RecyclerViewActivity).load(entity.image).into(imageView)
+            movieTitle.text = entity.title
+            movieScore.text = entity.score
             itemView.setOnClickListener {
+                viewModel.setDoubanMovieEntity(entity)
                 val intent = Intent(this@RecyclerViewActivity, ScrollingActivity::class.java)
-                intent.putExtra("listID", adapterPosition)
-//                context.startActivity(intent)
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this@RecyclerViewActivity,
                         imageView, "shareView").toBundle())
             }

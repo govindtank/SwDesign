@@ -20,7 +20,6 @@ class MovieDataEntity {
     var name = ""
     var logo = ""
     var url = ""
-
 }
 
 

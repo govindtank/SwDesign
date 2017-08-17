@@ -31,8 +31,11 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LifecycleRegistryOwner {
+
+    private val lifecycleRegistry = LifecycleRegistry(this)
+
     override fun getLifecycle(): LifecycleRegistry {
-        return LifecycleRegistry(this)
+        return lifecycleRegistry
     }
     private val viewModel: MainViewModel by lazy {
         ViewModelProviders.of(this).get(MainViewModel::class.java)

@@ -1,9 +1,6 @@
 package com.swensun.swdesign.viewmodel
 
 import android.arch.lifecycle.ViewModel
-import com.swensun.swdesign.dagger2.main.DaggerMainComponent
-import com.swensun.swdesign.repository.DoubanMovieRepository
-import javax.inject.Inject
 
 /**
  * Created by macmini on 2017/8/16.
@@ -11,11 +8,9 @@ import javax.inject.Inject
 
 class MainViewModel : ViewModel() {
 
-    @Inject
-    lateinit var doubanMovieRepository: DoubanMovieRepository
 
     init {
-        DaggerMainComponent.builder().build().inject(this)
+
     }
 
 //    fun testFun() {

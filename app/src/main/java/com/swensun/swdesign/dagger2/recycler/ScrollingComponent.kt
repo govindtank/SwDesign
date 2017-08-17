@@ -1,7 +1,7 @@
 package com.swensun.swdesign.dagger2.main
 
 import com.swensun.swdesign.dagger2.RepositoriesModule
-import com.swensun.swdesign.viewmodel.RecyclerViewModel
+import com.swensun.swdesign.viewmodel.ScrollingViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -10,7 +10,7 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = arrayOf(RepositoriesModule::class))
-interface RecyclerComponent {
+interface ScrollingComponent {
 
-    fun inject(recyclerViewModel: RecyclerViewModel)
+    fun inject(scrollingViewModel: ScrollingViewModel)
 }

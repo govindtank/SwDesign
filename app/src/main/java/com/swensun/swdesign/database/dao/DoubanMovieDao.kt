@@ -15,6 +15,9 @@ interface DoubanMovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveMovies(movies: List<DoubanMovieEntity>)
 
+    @Query("select * from $TABLE_DOUBANMOVIE")
+    fun queryAllMovies(): List<DoubanMovieEntity>?
+
     @Query("delete from $TABLE_DOUBANMOVIE where movieId = :movieId ")
     fun deleteMovie(movieId: String)
 }

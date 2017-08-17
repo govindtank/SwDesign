@@ -32,7 +32,7 @@ object DataBaseManager {
             doubanmovieEntity.title = it.title
             doubanmovieEntity.movieId = it.id
             doubanmovieEntity.score = it.rating.average.toString()
-            doubanmovieEntity.image = it.images.small
+            doubanmovieEntity.image = it.images.medium
             movies.add(doubanmovieEntity)
 
             it.genres.forEach {
