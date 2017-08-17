@@ -13,9 +13,8 @@ import com.swensun.swdesign.database.TABLE_DOUBANMOVIE
 class DoubanMovieEntity {
     @PrimaryKey(autoGenerate = true)
     var id = 0
-    var title = ""
-
     var movieId: String = ""
+    var title = ""
     var image: String = ""
     var score: String = ""
 }

@@ -3,6 +3,7 @@ package com.swensun.swdesign.database
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import com.swensun.swdesign.database.dao.DoubanMovieDao
+import com.swensun.swdesign.database.dao.MovieDataDao
 import com.swensun.swdesign.database.entity.DoubanMovieEntity
 import com.swensun.swdesign.database.entity.MovieDataEntity
 
@@ -17,4 +18,5 @@ abstract class AppDatabase : RoomDatabase() {
         val TAG = "AppDatabase"
     }
     abstract fun doubanMovieDao(): DoubanMovieDao
+    abstract fun movieDataDao(): MovieDataDao
 }

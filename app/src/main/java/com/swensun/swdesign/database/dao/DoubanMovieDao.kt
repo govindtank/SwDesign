@@ -3,8 +3,9 @@ package com.swensun.swdesign.database.dao
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
+import android.arch.persistence.room.Query
+import com.swensun.swdesign.database.TABLE_DOUBANMOVIE
 import com.swensun.swdesign.database.entity.DoubanMovieEntity
-import com.swensun.swdesign.database.entity.MovieDataEntity
 
 /**
  * Created by macmini on 2017/8/16.
@@ -14,6 +15,6 @@ interface DoubanMovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveMovies(movies: List<DoubanMovieEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveMovieDatas(datas: List<MovieDataEntity>)
+    @Query("delete from $TABLE_DOUBANMOVIE where movieId = :movieId ")
+    fun deleteMovie(movieId: String)
 }

@@ -6,6 +6,8 @@ import com.swensun.swdesign.App.BaseApplication
 import com.swensun.swdesign.R
 import com.swensun.swdesign.data.DoubanMovie
 import com.swensun.swdesign.database.entity.DoubanMovieEntity
+import com.swensun.swdesign.database.entity.MovieDataEntity
+import com.swensun.swdesign.database.entity.MovieDataType
 
 /**
  * Created by macmini on 2017/8/16.
@@ -21,6 +23,7 @@ object DataBaseManager {
 
     fun saveDoubanMovieEntnties(){
         var movies = arrayListOf<DoubanMovieEntity>()
+        var movieDatas = arrayListOf<MovieDataEntity>()
         val movieTop250 = BaseApplication.application.resources.openRawResource(R.raw.doubanmovie)
                 .bufferedReader().use { it.readText() }
         val doubanMovie = Gson().fromJson(movieTop250, DoubanMovie::class.java)
@@ -31,8 +34,37 @@ object DataBaseManager {
             doubanmovieEntity.score = it.rating.average.toString()
             doubanmovieEntity.image = it.images.small
             movies.add(doubanmovieEntity)
-            db.doubanMovieDao().saveMovies(movies)
-        }
 
+            it.genres.forEach {
+                val movieData = MovieDataEntity().apply { type = MovieDataType.GENRE.ordinal }
+                movieData.movieId = doubanmovieEntity.movieId
+                movieData.typeData = it
+                movieDatas.add(movieData)
+            }
+
+            it.directors.forEach {
+                val movieData = MovieDataEntity().apply { type = MovieDataType.DIRECTORS.ordinal }
+                movieData.movieId = doubanmovieEntity.movieId
+                movieData.name = it.name
+                movieData.url = it.alt
+                movieData.logo = it.avatars.small
+                movieDatas.add(movieData)
+            }
+            it.casts.forEach {
+                val movieData = MovieDataEntity().apply { type = MovieDataType.CAST.ordinal }
+                movieData.movieId = doubanmovieEntity.movieId
+                movieData.name = it.name
+                movieData.url = it.alt
+                movieData.logo = it.avatars.small
+                movieDatas.add(movieData)
+            }
+        }
+        db.doubanMovieDao().saveMovies(movies)
+        db.movieDataDao().saveMovieDatas(movieDatas)
+    }
+
+
+    fun deleteDoubanMovie(movieId : String) {
+        db.doubanMovieDao().deleteMovie(movieId)
     }
 }
