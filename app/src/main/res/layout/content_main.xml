@@ -77,8 +77,8 @@
                 android:id="@+id/github_context"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:text="https://github.com/yunshuipiao/SwDesign"
+                android:autoLink="phone"
+                android:text="13422284669"
                 android:padding="4dp"
                 />
 
