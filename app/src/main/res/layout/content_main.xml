@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.swensun.swdesign.ui.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_main"
+    android:layoutAnimation="@anim/anim_recycler_view"
+    >
 
 
     <android.support.v7.widget.CardView

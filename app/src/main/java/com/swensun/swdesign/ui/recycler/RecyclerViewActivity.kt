@@ -54,18 +54,22 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
         recycler_view.adapter = adapter
+//        recycler_view.layoutAnimation = AnimationUtils.loadLayoutAnimation(this, R.anim.anim_recycler_view)
 
         swipe_refresh_layout_recycler_view.setOnRefreshListener {
             Observable.timer(1, TimeUnit.SECONDS)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
 //                        adapter.setItemList(datas)
+
                         swipe_refresh_layout_recycler_view.isRefreshing = false
+                        recycler_view.scheduleLayoutAnimation()
                     }
         }
         viewModel.moviesLiveData.observe(this, Observer {
             it?.let {
                 adapter.setItemList(it)
+                recycler_view.scheduleLayoutAnimation()
             }
         })
         viewModel.queryAllMovies()
