@@ -51,7 +51,7 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
             it.setDisplayHomeAsUpEnabled(true)
         }
 
-        recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         recycler_view.setHasFixedSize(true)
         recycler_view.adapter = adapter
 //        recycler_view.layoutAnimation = AnimationUtils.loadLayoutAnimation(this, R.anim.anim_recycler_view)

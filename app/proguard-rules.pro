@@ -91,9 +91,6 @@
     java.lang.Object readResolve();
 }
 
--keep class com.swensun.swdesign.data.** {*;}
--keep class com.swensun.swdesign.database.entity.** {*;}
-
 -keepclasseswithmembernames class * {
 	native <methods>;
 }
@@ -105,16 +102,6 @@
 -keepnames enum * {
 	public <fields>;
 }
-
--keep class protocol.** { *; }
-
--keep class com.duowan.jni.** { *; }
-
--keep class com.yysec.notify { *; }
-
--keep class com.yy.sdk.crashreport.** { *; }
-
--keep public class com.yy.hiidostatis.defs.handler.CrashHandler{ *; }
 
 ######## Android Architecture rules begin ########
 ######## Android Architecture rules end ########
@@ -139,6 +126,9 @@
 -keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.stream.** { *; }
 # keep the model classes that will be serialized/deserialized over Gson
+
+-keep class com.swensun.swdesign.data.** {*;}
+
 ######## Gson rules end ########
 
 ######## Okhttp rules begin ########
@@ -162,3 +152,4 @@
     @retrofit2.http.* <methods>;
 }
 ######## Retrofit rules end ########
+
