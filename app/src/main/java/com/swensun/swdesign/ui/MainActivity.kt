@@ -13,9 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.swensun.swdesign.App.packageInfo
 import com.swensun.swdesign.R
-import com.swensun.swdesign.database.DataBaseManager
 import com.swensun.swdesign.ui.animator.AnimatorActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
 import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
@@ -24,10 +22,7 @@ import com.swensun.swdesign.ui.viewpager.ViewPagerActivity
 import com.swensun.swdesign.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LifecycleRegistryOwner {
@@ -62,20 +57,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setView() {
-        version_text.text = "版本号：${packageInfo.versionName}"
+
 //        val movies = resources.openRawResource(R.raw.doubanmovie).bufferedReader().use { it.readText() }
 //        val doubanMovie = Gson().fromJson(movies, DoubanMovie::class.java)
 //        Logger.d(doubanMovie.title)
-        app_info_layout.onClick {
-            doAsync {
-                DataBaseManager.saveDoubanMovieEntnties()
-            }
-        }
-        fab.setOnClickListener { view ->
-            doAsync {
-                DataBaseManager.deleteDoubanMovie("1292052")
-            }
-        }
 
     }
 

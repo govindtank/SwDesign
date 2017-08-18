@@ -4,6 +4,8 @@ import android.app.Application
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.BuildConfig
+import com.swensun.swdesign.database.DataBaseManager
+import org.jetbrains.anko.doAsync
 
 /**
  * Created by on 2017/6/6.
@@ -21,5 +23,8 @@ class SwApp: Application() {
             }
         })
         BaseApplication.application = this
+        doAsync {
+            DataBaseManager.saveDoubanMovieEntnties()
+        }
     }
 }
