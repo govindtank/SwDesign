@@ -103,8 +103,11 @@
 	public <fields>;
 }
 
+
 ######## Android Architecture rules begin ########
+-keep class android.arch.lifecycle.** { *; }
 ######## Android Architecture rules end ########
+
 
 ######## Room rules begin ########
 -keep class android.arch.persistence.room.Entity
