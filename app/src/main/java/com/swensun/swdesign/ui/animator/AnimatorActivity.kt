@@ -35,6 +35,10 @@ class AnimatorActivity : AppCompatActivity() {
             val intent = Intent(this, TransitionActivity::class.java)
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
+        btn_dialog_6.setOnClickListener {
+            val intent = Intent(this, PathMeasureActivity::class.java)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
     }
 
 }
