@@ -15,6 +15,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.swensun.swdesign.R
 import com.swensun.swdesign.ui.animator.AnimatorActivity
+import com.swensun.swdesign.ui.animator.PathMeasureActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
 import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
 import com.swensun.swdesign.ui.scroll.ScrollingIntroActivity
@@ -22,6 +23,7 @@ import com.swensun.swdesign.ui.viewpager.ViewPagerActivity
 import com.swensun.swdesign.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 
@@ -61,6 +63,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        val movies = resources.openRawResource(R.raw.doubanmovie).bufferedReader().use { it.readText() }
 //        val doubanMovie = Gson().fromJson(movies, DoubanMovie::class.java)
 //        Logger.d(doubanMovie.title)
+        app_info_layout.setOnClickListener {
+            startActivity(Intent(this, PathMeasureActivity::class.java))
+        }
 
     }
 

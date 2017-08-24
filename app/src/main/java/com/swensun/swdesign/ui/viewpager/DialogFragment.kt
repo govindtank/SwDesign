@@ -13,8 +13,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.FrameLayout
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
+import com.swensun.swdesign.base.dp2px
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -38,8 +41,20 @@ class DialogFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         btn_dialog_1.setOnClickListener {
-            AlertDialog.Builder(context).setTitle("简单对话框").setMessage("这是一个简单对话框")
+
+            val input = EditText(context)
+            val frameLayout = FrameLayout(context)
+            val lp = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT)
+            lp.leftMargin = dp2px(20f)
+            lp.rightMargin = dp2px(20f)
+            input.layoutParams = lp
+            frameLayout.addView(input)
+
+            AlertDialog.Builder(context).setTitle("简单对话框")
+//                    .setMessage("这是一个简单对话框")
                     .setPositiveButton("确认", null)
+                    .setView(frameLayout)
                     .show()
         }
         btn_dialog_2.setOnClickListener {
