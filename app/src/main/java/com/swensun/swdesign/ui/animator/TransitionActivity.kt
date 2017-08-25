@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar
 import android.transition.TransitionInflater
 import android.view.Window
 import com.swensun.swdesign.R
+import kotlinx.android.synthetic.main.activity_transition.*
 
 class TransitionActivity : AppCompatActivity() {
 
@@ -20,10 +21,10 @@ class TransitionActivity : AppCompatActivity() {
         window.enterTransition = tran
         window.reenterTransition = tran
         setContentView(R.layout.activity_transition)
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+
         setSupportActionBar(toolbar)
 
-        val fab = findViewById(R.id.fab) as FloatingActionButton
+
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()

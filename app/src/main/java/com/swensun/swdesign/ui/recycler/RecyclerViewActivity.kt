@@ -136,10 +136,10 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
     }
 
     inner class NormalItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val imageView = itemView.findViewById(R.id.view_recycler_image) as ImageView
-        val movieKey =  itemView.findViewById(R.id.movie_key) as TextView
-        val movieTitle = itemView.findViewById(R.id.movie_title) as TextView
-        val movieScore = itemView.findViewById(R.id.score_content) as TextView
+        val imageView: ImageView = itemView.findViewById(R.id.view_recycler_image)
+        val movieKey: TextView =  itemView.findViewById(R.id.movie_key)
+        val movieTitle: TextView = itemView.findViewById(R.id.movie_title)
+        val movieScore: TextView = itemView.findViewById(R.id.score_content)
 
         fun updateView(entity: DoubanMovieEntity) {
             Glide.with(this@RecyclerViewActivity).load(entity.image).into(imageView)

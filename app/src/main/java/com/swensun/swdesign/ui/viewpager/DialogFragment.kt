@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.ImageView
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
 import com.swensun.swdesign.base.dp2px
@@ -122,7 +123,7 @@ class DialogFragment : Fragment() {
         }
         btn_dialog_7.setOnClickListener {
             val calendar = Calendar.getInstance()
-            val datePickerDialog = DatePickerDialog(context, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            val datePickerDialog = DatePickerDialog(context, DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, monthOfYear)
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -133,7 +134,7 @@ class DialogFragment : Fragment() {
         }
         btn_dialog_8.setOnClickListener {
             val calendar = Calendar.getInstance()
-            val timePickerDialog = TimePickerDialog(context, TimePickerDialog.OnTimeSetListener { timePicker, i, i1 ->
+            val timePickerDialog = TimePickerDialog(context, TimePickerDialog.OnTimeSetListener { _, i, i1 ->
                 calendar.set(Calendar.HOUR_OF_DAY, i)
                 calendar.set(Calendar.MINUTE, i1)
                 Logger.d("$i : $i1")
@@ -143,9 +144,9 @@ class DialogFragment : Fragment() {
         btn_dialog_9.setOnClickListener {
             val bottomSheetDialog = BottomSheetDialog(context)
             val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_bottom_sheet, null)
-            val okBtn = dialogView.findViewById(R.id.ok_btn) as Button
+            val okBtn: Button = dialogView.findViewById(R.id.ok_btn)
             okBtn.setOnClickListener { bottomSheetDialog.dismiss() }
-            val cancelBtn = dialogView.findViewById(R.id.cancel_btn) as Button
+            val cancelBtn: Button = dialogView.findViewById(R.id.cancel_btn)
             cancelBtn.setOnClickListener { bottomSheetDialog.dismiss() }
             bottomSheetDialog.setContentView(dialogView)
             bottomSheetDialog.show()
@@ -153,7 +154,7 @@ class DialogFragment : Fragment() {
         btn_dialog_10.setOnClickListener {
             val fullDialog = Dialog(context, R.style.DialogFullscreen)
             fullDialog.setContentView(R.layout.dialog_full_screen)
-            val closeView = fullDialog.findViewById(R.id.img_dialog_fullscreen_close)
+            val closeView: ImageView = fullDialog.findViewById(R.id.img_dialog_fullscreen_close)
             closeView.setOnClickListener {
                 fullDialog.dismiss()
             }
