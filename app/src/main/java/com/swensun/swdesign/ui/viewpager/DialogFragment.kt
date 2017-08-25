@@ -12,10 +12,7 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.ImageView
+import android.widget.*
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
 import com.swensun.swdesign.base.dp2px
@@ -96,9 +93,15 @@ class DialogFragment : Fragment() {
                     .show()
         }
         btn_dialog_5.setOnClickListener {
-            ProgressDialog(context).apply {
-                setMessage("加载中...")
-            }.show()
+//            ProgressBar(context).apply {
+//                setMessage("加载中...")
+//            }.show()
+            val progressBar = ProgressBar(context, null, R.attr.indeterminateProgressStyle)
+            AlertDialog.Builder(context)
+                    .setMessage("加载中...")
+                    .setView(R.layout.dialog_progress)
+                    .show()
+
         }
         btn_dialog_6.setOnClickListener {
            val progressDialog =  ProgressDialog(context).apply {

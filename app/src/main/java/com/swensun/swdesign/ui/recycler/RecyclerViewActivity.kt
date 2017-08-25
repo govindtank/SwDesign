@@ -7,8 +7,8 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -79,7 +79,7 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_recycler, menu)
         val menuItem = menu.findItem(R.id.action_search)
-        val searchView = MenuItemCompat.getActionView(menuItem) as SearchView
+        val searchView: SearchView = menuItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Logger.d(query)
@@ -149,8 +149,10 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
             itemView.setOnClickListener {
                 viewModel.setDoubanMovieEntity(entity)
                 val intent = Intent(this@RecyclerViewActivity, ScrollingActivity::class.java)
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this@RecyclerViewActivity,
-                        imageView, "shareView").toBundle())
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this@RecyclerViewActivity,
+                            imageView, "shareView").toBundle())
+                }
             }
         }
     }
