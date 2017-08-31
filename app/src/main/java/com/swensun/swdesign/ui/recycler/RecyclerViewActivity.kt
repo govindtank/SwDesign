@@ -23,7 +23,7 @@ import com.swensun.swdesign.database.entity.DoubanMovieEntity
 import com.swensun.swdesign.viewmodel.RecyclerViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.activity_recycler_view.*
 import kotlinx.android.synthetic.main.content_recycler_view.*
 import java.util.concurrent.TimeUnit
 
@@ -50,8 +50,7 @@ class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
         }
-
-        recycler_view.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
+        recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
         recycler_view.adapter = adapter
 //        recycler_view.layoutAnimation = AnimationUtils.loadLayoutAnimation(this, R.anim.anim_recycler_view)

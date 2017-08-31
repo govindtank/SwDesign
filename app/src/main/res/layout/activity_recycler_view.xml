@@ -3,11 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recycler_coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.swensun.swdesign.ui.recycler.RecyclerViewActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/recycler_appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
@@ -24,5 +26,19 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_recycler_view"/>
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:layout_anchor="@id/swipe_refresh_layout_recycler_view"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_share_black_24dp"
+        app:layout_behavior="com.swensun.swdesign.ui.recycler.FabBehavior"
+        />
+
 
 </android.support.design.widget.CoordinatorLayout>
