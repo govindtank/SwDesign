@@ -10,12 +10,12 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
 import android.view.MenuItem
 import com.swensun.swdesign.R
 import com.swensun.swdesign.ui.animator.AnimatorActivity
 import com.swensun.swdesign.ui.animator.PathMeasureActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
+import com.swensun.swdesign.ui.guide.OnboardingActivity
 import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
 import com.swensun.swdesign.ui.scroll.ScrollingIntroActivity
 import com.swensun.swdesign.ui.viewpager.ViewPagerActivity
@@ -54,16 +54,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(Intent(this, LoginActivity::class.java))
             drawer_layout.closeDrawer(GravityCompat.START)
         }
-
         setView()
+//        if (viewModel.shouldShowGuide()) {
+//
+//            viewModel.markGuide()
+//        }
+        startActivity(Intent(this, OnboardingActivity::class.java))
 
     }
 
     private fun setView() {
 
-//        val movies = resources.openRawResource(R.raw.doubanmovie).bufferedReader().use { it.readText() }
-//        val doubanMovie = Gson().fromJson(movies, DoubanMovie::class.java)
-//        Logger.d(doubanMovie.title)
         app_info_layout.setOnClickListener {
             startActivity(Intent(this, PathMeasureActivity::class.java))
         }
@@ -78,24 +79,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-
-        if (id == R.id.action_settings) {
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
+//    --------- menu ---------------------------
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        menuInflater.inflate(R.menu.main, menu)
+//        return true
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        val id = item.itemId
+//
+//        if (id == R.id.action_settings) {
+//            return true
+//        }
+//
+//        return super.onOptionsItemSelected(item)
+//    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
 
         drawer_layout.closeDrawer(GravityCompat.START, true)
         Observable.timer(150, TimeUnit.MILLISECONDS)
