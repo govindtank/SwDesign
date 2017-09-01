@@ -13,6 +13,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:text="Rxjava2 \n Dagger2"
         android:textColor="@android:color/white"
+        android:gravity="center"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

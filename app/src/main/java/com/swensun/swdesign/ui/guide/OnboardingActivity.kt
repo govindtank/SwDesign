@@ -14,14 +14,15 @@ import com.swensun.swdesign.R
 import com.swensun.swdesign.base.getColor
 import kotlinx.android.synthetic.main.activity_onboarding.*
 
+val fragment_layout_key = "fragment_layout"
+
 class OnboardingActivity : AppCompatActivity() {
 
 
-
     private var mOnboardingPagerAdapter: OnboardingPagerAdapter? = null
-    private val mOnboardingFragmentList = arrayListOf(OnboardingFragment(),
-            OnboardingFragment(),
-            OnboardingFragment()
+    private val mOnboardingFragmentList = arrayListOf(OnboardingFragment().apply { arguments = Bundle().apply { putInt(fragment_layout_key, R.layout.fragment_onboarding_one) } },
+            OnboardingFragment().apply { arguments = Bundle().apply { putInt(fragment_layout_key, R.layout.fragment_onboarding_two) } },
+            OnboardingFragment().apply { arguments = Bundle().apply { putInt(fragment_layout_key, R.layout.fragment_onboarding_three) } }
     )
     private val mViewPagerBgColor = arrayListOf(Color.parseColor("#03A9F4"),
             Color.parseColor("#00BCD4"),

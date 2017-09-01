@@ -55,12 +55,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             drawer_layout.closeDrawer(GravityCompat.START)
         }
         setView()
-//        if (viewModel.shouldShowGuide()) {
-//
-//            viewModel.markGuide()
-//        }
-        startActivity(Intent(this, OnboardingActivity::class.java))
-
+        if (viewModel.shouldShowGuide()) {
+            startActivity(Intent(this, OnboardingActivity::class.java))
+            viewModel.markGuide()
+        }
     }
 
     private fun setView() {
