@@ -39,5 +39,6 @@
     <string name="title_activity_circular_reveal">CircularRevealActivity</string>
     <string name="title_activity_transition">TransitionActivity</string>
     <string name="title_activity_path_measure">PathMeasureActivity</string>
+    <string name="title_activity_onboarding">OnboardingActivity</string>
 
 </resources>

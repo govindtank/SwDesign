@@ -1,6 +1,9 @@
 package com.swensun.swdesign.viewmodel
 
 import android.arch.lifecycle.ViewModel
+import com.swensun.swdesign.dagger2.main.DaggerMainComponent
+import com.swensun.swdesign.shareprefence.SharedPerfsManager
+import javax.inject.Inject
 
 /**
  * Created by macmini on 2017/8/16.
@@ -9,9 +12,23 @@ import android.arch.lifecycle.ViewModel
 class MainViewModel : ViewModel() {
 
 
-    init {
 
+    @Inject lateinit var mSharedPerfsManager: SharedPerfsManager
+
+    init {
+        DaggerMainComponent.builder().build().inject(this)
     }
+
+
+    fun shouldShowGuide(): Boolean {
+        return mSharedPerfsManager["guide", true]
+    }
+
+    fun markGuide() {
+        mSharedPerfsManager.put("guide", false)
+    }
+
+
 
 //    fun testFun() {
 //        doAsync {

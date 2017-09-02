@@ -62,6 +62,22 @@
                 android:text="更新项目架构，采用谷歌 android architecture component 设计， 使用lifecycle， viewModel， 数据库使用room，livedata通知UI更新。另外Rxjava2， Dagger2等都有基本的使用介绍，可以做个参考。"
                 android:padding="4dp"
                 />
+            <TextView
+                android:id="@+id/version_text_1_0_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="版本号：1.0.2"
+                android:textColor="@color/colorPrimaryDark"
+                android:padding="4dp"
+                />
+
+            <TextView
+                android:id="@+id/version_content_1_0_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="增加FAB随RecyclerView的滑动变化和PathMeasure的使用"
+                android:padding="4dp"
+                />
 
             <TextView
                 android:id="@+id/github_text"
