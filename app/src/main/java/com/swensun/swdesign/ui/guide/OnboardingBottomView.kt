@@ -1,5 +1,6 @@
 package com.swensun.swdesign.ui.guide
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.constraint.ConstraintLayout
@@ -70,6 +71,7 @@ class OnboardingBottomView @JvmOverloads constructor(
         }
         done_text.setOnClickListener {
             context.startActivity(Intent(context, MainActivity::class.java))
+            (context as Activity).finish()
         }
     }
 
