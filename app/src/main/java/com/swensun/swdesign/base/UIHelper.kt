@@ -127,32 +127,6 @@ fun getStatusBarBarHeight(): Int {
     }
 }
 
-fun checkDeviceHasNavigationBar(): Boolean {
-    //Android 5.0以下没有虚拟按键
-    if (Build.VERSION.SDK_INT < 21) {
-        return false
-    }
-    var hasNavigationBar = false
-    val rs = BaseApplication.application.resources
-    val id = rs.getIdentifier("config_showNavigationBar", "bool", "android")
-    if (id > 0) {
-        hasNavigationBar = rs.getBoolean(id)
-    }
-    try {
-        val systemPropertiesClass = Class.forName("android.os.SystemProperties")
-        val m = systemPropertiesClass.getMethod("get", String::class.java)
-        val navBarOverride = m.invoke(systemPropertiesClass, "qemu.hw.mainkeys") as String
-        if ("1" == navBarOverride) {
-            hasNavigationBar = false
-        } else if ("0" == navBarOverride) {
-            hasNavigationBar = true
-        }
-    } catch (e: Exception) {
-    }
-
-    return hasNavigationBar
-}
-
 fun TextView.adjustTextSize(maxWidth: Int, text: String) {
     val avaiWidth = maxWidth - this.paddingLeft - this.paddingRight - 10
 
@@ -171,4 +145,25 @@ fun TextView.adjustTextSize(maxWidth: Int, text: String) {
 
     this.setTextSize(TypedValue.COMPLEX_UNIT_PX, trySize)
     this.text = text
+}
+
+fun checkDeviceNavigation(activity: Activity): Boolean {
+    val windowManager = activity.windowManager
+    val d = windowManager.defaultDisplay
+
+    val realDisplayMetrics = DisplayMetrics()
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        d.getRealMetrics(realDisplayMetrics)
+    }
+
+    val realHeight = realDisplayMetrics.heightPixels
+    val realWidth = realDisplayMetrics.widthPixels
+
+    val displayMetrics = DisplayMetrics()
+    d.getMetrics(displayMetrics)
+
+    val displayHeight = displayMetrics.heightPixels
+    val displayWidth = displayMetrics.widthPixels
+
+    return realWidth - displayWidth > 0 || realHeight - displayHeight > 0
 }
