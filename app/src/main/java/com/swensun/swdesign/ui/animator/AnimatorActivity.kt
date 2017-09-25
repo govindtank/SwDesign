@@ -29,7 +29,8 @@ class AnimatorActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
         btn_dialog_2.setOnClickListener {
-            startActivity(Intent(this, CircularRevealActivity::class.java))
+            var options = ActivityOptions.makeScaleUpAnimation(it, (it.x.toInt() + it.width) / 2, (it.y.toInt() + it.height) / 2, 0, 0)
+            startActivity(Intent(this, CircularRevealActivity::class.java), options.toBundle())
         }
         btn_dialog_3.setOnClickListener {
             val intent = Intent(this, TransitionActivity::class.java)

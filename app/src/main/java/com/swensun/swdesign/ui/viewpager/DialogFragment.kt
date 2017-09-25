@@ -30,6 +30,9 @@ import java.util.concurrent.TimeUnit
 class DialogFragment : Fragment() {
 
 
+    var isVisibleToUser = false
+
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -38,6 +41,8 @@ class DialogFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Logger.d(isVisibleToUser)
+//        if (!isVisibleToUser) return
         btn_dialog_1.setOnClickListener {
 
             val input = EditText(context)
@@ -166,5 +171,12 @@ class DialogFragment : Fragment() {
         btn_dialog_11.setOnClickListener {
 
         }
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        // 控制fragment可见，每次tab切换都会调用
+        super.setUserVisibleHint(isVisibleToUser)
+        this.isVisibleToUser = isVisibleToUser
+        Logger.d(isVisibleToUser)
     }
 }
