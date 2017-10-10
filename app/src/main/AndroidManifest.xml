@@ -41,8 +41,8 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleTask"
             android:label="@string/title_activity_main"
+            android:launchMode="singleTask"
             android:theme="@style/MainTheme.NoActionBar">
         </activity>
         <activity
@@ -105,9 +105,17 @@
             android:label="@string/title_activity_onboarding"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <service android:name=".ui.StartupService"
+
+        <service
+            android:name=".ui.StartupService"
             android:process=":startup">
         </service>
+
+        <activity
+            android:name=".touchevent.TouchEventActivity"
+            android:label="@string/title_activity_touch_event"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

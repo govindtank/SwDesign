@@ -1,43 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_recycler_view"
-            android:title="RecycleView"
-            android:icon="@drawable/ic_recycler_view_black"
-            />
-        <item
-            android:id="@+id/nav_scroll"
-            android:title="Scrolling"
-            android:icon="@drawable/ic_scroll_black"
-            />
-        <item
-            android:id="@+id/nav_bottom_navigation"
-            android:title="BottomNavigation"
-            android:icon="@drawable/ic_bottom_navigation_black_24dp"
-            />
-        <item
-            android:id="@+id/nav_view_pager"
-            android:title="ViewPager"
-            android:icon="@drawable/ic_view_pager_black_24dp"
-            />
-        <item
-            android:id="@+id/nav_animator"
-            android:title="Animator"
-            android:icon="@drawable/ic_animator_black_48dp"
-            />
-    </group>
+    <!--<group android:checkableBehavior="single">-->
+        <!--<item-->
+            <!--android:id="@+id/nav_recycler_view"-->
+            <!--android:title="RecycleView"-->
+            <!--android:icon="@drawable/ic_recycler_view_black"-->
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/nav_scroll"-->
+            <!--android:title="Scrolling"-->
+            <!--android:icon="@drawable/ic_scroll_black"-->
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/nav_bottom_navigation"-->
+            <!--android:title="BottomNavigation"-->
+            <!--android:icon="@drawable/ic_bottom_navigation_black_24dp"-->
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/nav_view_pager"-->
+            <!--android:title="ViewPager"-->
+            <!--android:icon="@drawable/ic_view_pager_black_24dp"-->
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/nav_animator"-->
+            <!--android:title="Animator"-->
+            <!--android:icon="@drawable/ic_animator_black_48dp"-->
+            <!--/>-->
+    <!--</group>-->
+    <item android:title="UI and Anim">
+        <menu>
+            <item
+                android:id="@+id/nav_recycler_view"
+                android:icon="@drawable/ic_recycler_view_black"
+                android:title="RecycleView"
+                />
+            <item
+                android:id="@+id/nav_scroll"
+                android:icon="@drawable/ic_scroll_black"
+                android:title="Scrolling"
+                />
+            <item
+                android:id="@+id/nav_bottom_navigation"
+                android:icon="@drawable/ic_bottom_navigation_black_24dp"
+                android:title="BottomNavigation"
+                />
+            <item
+                android:id="@+id/nav_view_pager"
+                android:icon="@drawable/ic_view_pager_black_24dp"
+                android:title="ViewPager"
+                />
+            <item
+                android:id="@+id/nav_animator"
+                android:icon="@drawable/ic_animator_black_48dp"
+                android:title="Animator"
+                />
+        </menu>
 
-    <!--<item android:title="Communicate">-->
-        <!--<menu>-->
-            <!--<item-->
-                <!--android:id="@+id/nav_share"-->
-                <!--android:title="Share"/>-->
-            <!--<item-->
-                <!--android:id="@+id/nav_send"-->
-                <!--android:title="Send"/>-->
-        <!--</menu>-->
-    <!--</item>-->
+    </item>
+
+    <item android:title="TouchEvent">
+        <menu>
+            <item
+                android:id="@+id/nav_touch_event"
+                android:icon="@drawable/ic_animator_black_48dp"
+                android:title="TouchEvent"/>
+        </menu>
+    </item>
 
 </menu>
