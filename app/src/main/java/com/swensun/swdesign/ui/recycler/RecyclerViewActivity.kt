@@ -1,8 +1,6 @@
 package com.swensun.swdesign.ui.recycler
 
 import android.app.ActivityOptions
-import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -27,15 +25,7 @@ import kotlinx.android.synthetic.main.activity_recycler_view.*
 import kotlinx.android.synthetic.main.content_recycler_view.*
 import java.util.concurrent.TimeUnit
 
-class RecyclerViewActivity : AppCompatActivity(), LifecycleRegistryOwner {
-
-
-
-    private val lifecycleRegistry = LifecycleRegistry(this)
-
-    override fun getLifecycle(): LifecycleRegistry {
-        return lifecycleRegistry
-    }
+class RecyclerViewActivity : AppCompatActivity(){
 
     val adapter = RecyclerViewAdapter(this)
     var datas = arrayListOf<DoubanMovieEntity>()
