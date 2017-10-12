@@ -2,12 +2,10 @@ package com.swensun.swdesign.base
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
-import android.net.Uri
 import android.os.Build
 import android.support.annotation.ColorRes
 import android.support.annotation.DimenRes
@@ -94,9 +92,6 @@ fun isNetworkAvailable(): Boolean {
     return ni.isConnected || ni.isAvailable && ni.isConnectedOrConnecting
 }
 
-fun callPhone(act: Activity, number: String) {
-    act.startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:" + number)))
-}
 
 private fun getSize(): Point {
     val wm = BaseApplication.application.getSystemService(Context.WINDOW_SERVICE) as WindowManager

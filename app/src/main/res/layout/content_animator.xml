@@ -24,7 +24,7 @@
             android:id="@+id/btn_dialog_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#F44336"
+            android:backgroundTint="@color/anim_btn_bg"
             android:padding="@dimen/btn_padding"
             android:text="触摸反馈"
             android:textColor="@android:color/white"

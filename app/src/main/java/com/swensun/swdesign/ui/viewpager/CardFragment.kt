@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.orhanobut.logger.Logger
-
 import com.swensun.swdesign.R
 
 
@@ -23,8 +21,7 @@ class CardFragment : Fragment() {
         return inflater?.inflate(R.layout.fragment_card, container, false)
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        Logger.d(isVisibleToUser)
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        
     }
 }
