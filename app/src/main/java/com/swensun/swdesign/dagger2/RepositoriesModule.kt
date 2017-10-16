@@ -1,6 +1,6 @@
 package com.swensun.swdesign.dagger2
 
-import com.swensun.swdesign.App.BaseApplication
+import com.swensun.swdesign.app.BaseApplication
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

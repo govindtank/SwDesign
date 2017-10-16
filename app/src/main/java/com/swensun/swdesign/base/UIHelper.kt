@@ -18,7 +18,7 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import com.orhanobut.logger.Logger
-import com.swensun.swdesign.App.BaseApplication
+import com.swensun.swdesign.app.BaseApplication
 
 
 /**

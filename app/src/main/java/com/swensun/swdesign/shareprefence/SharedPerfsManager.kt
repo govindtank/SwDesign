@@ -1,7 +1,7 @@
 package com.swensun.swdesign.shareprefence
 
 import android.content.Context
-import com.swensun.swdesign.App.BaseApplication
+import com.swensun.swdesign.app.BaseApplication
 import javax.inject.Inject
 import javax.inject.Singleton
 

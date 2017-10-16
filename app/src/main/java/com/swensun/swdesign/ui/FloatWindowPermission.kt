@@ -13,7 +13,7 @@ import android.os.Build
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
-import com.swensun.swdesign.App.BaseApplication
+import com.swensun.swdesign.app.BaseApplication
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader

@@ -1,4 +1,4 @@
-package com.swensun.swdesign.App
+package com.swensun.swdesign.app
 
 import android.content.pm.PackageInfo
 

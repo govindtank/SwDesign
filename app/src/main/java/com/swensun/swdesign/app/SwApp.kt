@@ -1,4 +1,4 @@
-package com.swensun.swdesign.App
+package com.swensun.swdesign.app
 
 import android.app.Application
 import com.orhanobut.logger.AndroidLogAdapter

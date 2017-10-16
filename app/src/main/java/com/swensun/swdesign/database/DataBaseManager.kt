@@ -2,7 +2,7 @@ package com.swensun.swdesign.database
 
 import android.arch.persistence.room.Room
 import com.google.gson.Gson
-import com.swensun.swdesign.App.BaseApplication
+import com.swensun.swdesign.app.BaseApplication
 import com.swensun.swdesign.R
 import com.swensun.swdesign.data.DoubanMovie
 import com.swensun.swdesign.database.entity.DoubanMovieEntity
