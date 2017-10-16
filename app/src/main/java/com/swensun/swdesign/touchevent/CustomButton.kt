@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.widget.Button
-import com.orhanobut.logger.Logger
 
 /**
  * Created by macmini on 2017/10/10.
@@ -15,7 +14,7 @@ class CustomButton @JvmOverloads constructor(
 ) : Button(context, attrs, defStyleAttr) {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        Logger.d(event?.action)
+//        Logger.d(event?.action)
         return super.onTouchEvent(event)
     }
 }

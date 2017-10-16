@@ -4,7 +4,6 @@ import android.content.Context
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.MotionEvent
-import com.orhanobut.logger.Logger
 
 /**
  * Created by macmini on 2017/10/10.
@@ -15,7 +14,7 @@ class CustomCardView @JvmOverloads constructor(
 ) : CardView(context, attrs, defStyleAttr) {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        Logger.d(event?.action)
+//        Logger.d(event?.action)
         return super.onTouchEvent(event)
     }
 }
