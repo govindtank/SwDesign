@@ -24,6 +24,12 @@ class TouchEventActivity : AppCompatActivity() {
         custom_btn.setOnClickListener {
             Logger.d("click custom btn")
         }
+        custom_btn.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                v.performClick()
+            }
+            true
+        }
         custom_card_view.setOnClickListener {
             Logger.d("click custom card view")
         }

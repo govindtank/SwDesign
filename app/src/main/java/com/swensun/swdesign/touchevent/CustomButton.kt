@@ -2,7 +2,6 @@ package com.swensun.swdesign.touchevent
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.MotionEvent
 import android.widget.Button
 
 /**
@@ -13,8 +12,4 @@ class CustomButton @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : Button(context, attrs, defStyleAttr) {
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-//        Logger.d(event?.action)
-        return super.onTouchEvent(event)
-    }
 }
