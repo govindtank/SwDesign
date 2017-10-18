@@ -54,7 +54,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setView() {
 
         app_info_layout.setOnClickListener {
-            startActivity(Intent(this, PathMeasureActivity::class.java))
+            val intent = Intent(this, PathMeasureActivity::class.java)
+            val options = ActivityOptions.makeSceneTransitionAnimation(this, it, "sharedView")
+            startActivity(intent, options.toBundle())
         }
 
     }

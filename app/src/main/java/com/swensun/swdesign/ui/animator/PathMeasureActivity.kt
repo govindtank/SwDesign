@@ -20,4 +20,9 @@ class PathMeasureActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return false
+    }
 }
