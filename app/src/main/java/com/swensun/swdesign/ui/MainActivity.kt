@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //            val options = ActivityOptions.makeSceneTransitionAnimation(this, it, "sharedView")
 //            startActivity(intent, options.toBundle())
             if (isAccessibilityServiceEnable()) {
+                isAutoLike = true
                 var intent = packageManager.getLaunchIntentForPackage("com.instagram.android")
                 intent?.let {
                     startActivity(intent)

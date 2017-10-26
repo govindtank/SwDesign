@@ -1,14 +1,19 @@
 package com.swensun.swdesign.ui
 
 import android.accessibilityservice.AccessibilityService
+import android.content.Intent
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import com.orhanobut.logger.Logger
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by macmini on 2017/10/26.
  */
+var isAutoLike = false
 class MyAccessibilityService: AccessibilityService() {
 
     companion object {
@@ -39,27 +44,33 @@ class MyAccessibilityService: AccessibilityService() {
         Log.d(TAG, eventType.toString())
         val rootInfo = rootInActiveWindow
 //        Log.d(TAG,  containListView(rootInfo).toString())
-        if (eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
-//            if (isLiking) {
-//                return
-//            }
-//            if (containListView(rootInfo)) {
-//                isLiking = true
-//                listNote?.let { note ->
-//                    Observable.interval(1, TimeUnit.SECONDS)
-//                            .take(20)
-//                            .observeOn(AndroidSchedulers.mainThread())
-//                            .subscribe {
-//                                applyAutoLike(note)
-//                                if (note.isScrollable) {
-//                                    note.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
-//                                }
-//                            }
-//                }
-//            }
-//            applyAutoLike(event)
-            if (containListView(rootInfo)) {
-                applyAutoLike(listNote!!)
+//        if (eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
+//
+//        }
+        if (!isAutoLike) {
+            return
+        }
+        if (isLiking) {
+            return
+        }
+        if (containListView(rootInfo)) {
+            isLiking = true
+            listNote?.let { note ->
+                Observable.interval(3, TimeUnit.SECONDS)
+                        .take(20)
+                        .doOnComplete {
+                            isLiking = false
+                            isAutoLike = false
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                        }
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe {
+                            applyAutoLike(note)
+                            if (note.isScrollable) {
+                                note.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
+                            }
+                        }
             }
         }
     }
@@ -84,14 +95,17 @@ class MyAccessibilityService: AccessibilityService() {
         return false
     }
 
-    private fun applyAutoLike(noteInfo: AccessibilityNodeInfo) {
+    private fun applyAutoLike(noteInfo: AccessibilityNodeInfo?) {
+        if (noteInfo == null) return
 //        val noteInfo = event?.source!!
         val childCount = noteInfo.childCount
-        Log.d(TAG, noteInfo.className.toString())
+        Log.d(TAG, noteInfo.toString())
         if (noteInfo.className.toString() == "android.widget.ImageView") {
-            Log.d(TAG, "111111111")
-            Log.d(TAG, noteInfo.contentDescription.toString())
-            return
+            if (noteInfo.contentDescription == "赞") {
+                noteInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                return
+            }
+
         }
         (0 until childCount).forEach {
             val childInfo = noteInfo.getChild(it)
