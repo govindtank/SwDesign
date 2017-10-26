@@ -10,9 +10,10 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.swensun.swdesign.R
+import com.swensun.swdesign.base.isAccessibilityServiceEnable
+import com.swensun.swdesign.base.openAccessibilitySetting
 import com.swensun.swdesign.touchevent.TouchEventActivity
 import com.swensun.swdesign.ui.animator.AnimatorActivity
-import com.swensun.swdesign.ui.animator.PathMeasureActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
 import com.swensun.swdesign.ui.guide.OnboardingActivity
 import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
@@ -23,6 +24,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
+
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
@@ -54,9 +57,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setView() {
 
         app_info_layout.setOnClickListener {
-            val intent = Intent(this, PathMeasureActivity::class.java)
-            val options = ActivityOptions.makeSceneTransitionAnimation(this, it, "sharedView")
-            startActivity(intent, options.toBundle())
+//            val intent = Intent(this, PathMeasureActivity::class.java)
+//            val options = ActivityOptions.makeSceneTransitionAnimation(this, it, "sharedView")
+//            startActivity(intent, options.toBundle())
+            if (isAccessibilityServiceEnable()) {
+                var intent = packageManager.getLaunchIntentForPackage("com.instagram.android")
+                intent?.let {
+                    startActivity(intent)
+                }
+            } else {
+                openAccessibilitySetting(this)
+            }
+
         }
 
     }
