@@ -72,6 +72,15 @@ class MyAccessibilityService: AccessibilityService() {
                 }
             }
         }
+        if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+            val listNodes = event.source.findAccessibilityNodeInfosByText("停止关注")
+            listNodes.forEach {
+                if (it.text == "停止关注") {
+                    it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                    Thread.sleep(100)
+                }
+            }
+        }
     }
 
     private fun containListView(rootInfo: AccessibilityNodeInfo?): Boolean {
@@ -116,7 +125,18 @@ class MyAccessibilityService: AccessibilityService() {
             if (it.text == "关注") {
                 it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
                 Log.d(TAG, "click" + time)
-                Thread.sleep(1000)
+                Thread.sleep(500)
+            } else if (it.text == "已关注") {
+                it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                Thread.sleep(200)
+                //取消点赞
+                val stopNodes = rootInActiveWindow.findAccessibilityNodeInfosByText("停止关注")
+                stopNodes.forEach {
+                    if (it.text == "停止关注") {
+                        it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                        Thread.sleep(200)
+                    }
+                }
             }
         }
     }
