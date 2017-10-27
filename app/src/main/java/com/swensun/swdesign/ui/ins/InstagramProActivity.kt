@@ -25,7 +25,14 @@ class InstagramProActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        cip_switch_open_ins.isChecked = isAutoLike
+    }
+
     private fun initView() {
+
         cip_switch_open_ins.setOnCheckedChangeListener { _, isChecked ->
             isAutoLike = isChecked
         }
