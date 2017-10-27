@@ -1,4 +1,4 @@
-package com.swensun.swdesign.touchevent
+package com.swensun.swdesign.ui.touchevent
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

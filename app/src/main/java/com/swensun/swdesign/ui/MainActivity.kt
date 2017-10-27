@@ -10,14 +10,14 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.swensun.swdesign.R
-import com.swensun.swdesign.base.isAccessibilityServiceEnable
-import com.swensun.swdesign.base.openAccessibilitySetting
-import com.swensun.swdesign.touchevent.TouchEventActivity
 import com.swensun.swdesign.ui.animator.AnimatorActivity
+import com.swensun.swdesign.ui.animator.PathMeasureActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
 import com.swensun.swdesign.ui.guide.OnboardingActivity
+import com.swensun.swdesign.ui.ins.InstagramProActivity
 import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
 import com.swensun.swdesign.ui.scroll.ScrollingIntroActivity
+import com.swensun.swdesign.ui.touchevent.TouchEventActivity
 import com.swensun.swdesign.ui.viewpager.ViewPagerActivity
 import com.swensun.swdesign.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -57,19 +57,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setView() {
 
         app_info_layout.setOnClickListener {
-//            val intent = Intent(this, PathMeasureActivity::class.java)
-//            val options = ActivityOptions.makeSceneTransitionAnimation(this, it, "sharedView")
-//            startActivity(intent, options.toBundle())
-            if (isAccessibilityServiceEnable()) {
-                isAutoLike = true
-                var intent = packageManager.getLaunchIntentForPackage("com.instagram.android")
-                intent?.let {
-                    startActivity(intent)
-                }
-            } else {
-                openAccessibilitySetting(this)
-            }
-
+            val intent = Intent(this, PathMeasureActivity::class.java)
+            val options = ActivityOptions.makeSceneTransitionAnimation(this, it, "sharedView")
+            startActivity(intent, options.toBundle())
         }
 
     }
@@ -124,6 +114,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_touch_event -> {
                 startActivity(Intent(this, TouchEventActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            }
+            R.id.nav_ins_pro -> {
+                startActivity(Intent(this, InstagramProActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }
         }
     }

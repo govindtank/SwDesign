@@ -1,4 +1,4 @@
-package com.swensun.swdesign.touchevent
+package com.swensun.swdesign.ui.touchevent
 
 import android.content.Context
 import android.support.v7.widget.CardView
