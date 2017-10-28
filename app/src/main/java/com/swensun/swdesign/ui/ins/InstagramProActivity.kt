@@ -2,7 +2,6 @@ package com.swensun.swdesign.ui.ins
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.swensun.swdesign.R
 import com.swensun.swdesign.base.isAccessibilityServiceEnable
 import com.swensun.swdesign.base.openAccessibilitySetting
@@ -28,16 +27,14 @@ class InstagramProActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        cip_switch_open_ins.isChecked = isAutoLike
+        isAutoLike = false
     }
 
     private fun initView() {
 
-        cip_switch_open_ins.setOnCheckedChangeListener { _, isChecked ->
-            isAutoLike = isChecked
-        }
+
         cip_btn_open_ins.setOnClickListener {
-            Log.d(TAG, isAutoLike.toString())
+            isAutoLike = true
             if (isAccessibilityServiceEnable()) {
                 val intent = packageManager.getLaunchIntentForPackage("com.instagram.android")
                 intent?.let {
