@@ -18,13 +18,13 @@
         app:layout_constraintTop_toTopOf="parent"
         android:text="打开INS"/>
 
-    <!--<Switch-->
-        <!--android:id="@+id/cip_switch_open_ins"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="@id/cip_btn_open_ins"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/cip_btn_open_ins"-->
-        <!--android:layout_margin="16dp"/>-->
+    <Switch
+        android:id="@+id/cip_switch_open_ins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cip_btn_open_ins"
+        app:layout_constraintBottom_toBottomOf="@id/cip_btn_open_ins"
+        android:layout_margin="16dp"/>
 
 </android.support.constraint.ConstraintLayout>

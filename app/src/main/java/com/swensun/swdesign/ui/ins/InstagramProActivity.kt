@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_instagram_pro.*
 import kotlinx.android.synthetic.main.content_instagram_pro.*
 
 var isAutoLike = false
+var isAttention = true
 class InstagramProActivity : AppCompatActivity() {
     
     companion object {
@@ -28,10 +29,15 @@ class InstagramProActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         isAutoLike = false
+        cip_switch_open_ins.isChecked = isAttention
     }
 
     private fun initView() {
 
+        cip_switch_open_ins.setOnCheckedChangeListener { _, isChecked ->
+            isAttention = isChecked
+            cip_btn_open_ins.text = if (isAttention) "Ins关注" else "Ins取关"
+        }
 
         cip_btn_open_ins.setOnClickListener {
             isAutoLike = true

@@ -7,6 +7,7 @@ import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.ui.ins.InstagramProActivity
+import com.swensun.swdesign.ui.ins.isAttention
 import com.swensun.swdesign.ui.ins.isAutoLike
 import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
@@ -16,11 +17,8 @@ import java.util.concurrent.TimeUnit
  */
 
 
-var time = 0
+var page = 10
 var observer: Observable<Long>? = null
-var isAttention = false
-
-
 class MyAccessibilityService: AccessibilityService() {
 
 
@@ -67,7 +65,7 @@ class MyAccessibilityService: AccessibilityService() {
                     listNodes?.let {
                         if (it.size == 1) {
                             val listNote = listNodes[0]
-                            observer = Observable.interval(10, TimeUnit.SECONDS).take(10)
+                            observer = Observable.interval(10, TimeUnit.SECONDS).take(page.toLong())
                             observer!!.doOnSubscribe {
                                 Log.d(MyAccessibilityService.TAG, "begin")
                             }.doOnComplete {
@@ -75,7 +73,7 @@ class MyAccessibilityService: AccessibilityService() {
                                 startActivity(Intent(this, InstagramProActivity::class.java))
                             }.subscribe {
                                 Log.d(TAG, it.toString())
-                                if (it != 9L) {
+                                if (it != (page - 1).toLong()) {
                                     applyAutoAttention(listNote)
                                     listNote.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
                                 }
@@ -138,12 +136,17 @@ class MyAccessibilityService: AccessibilityService() {
         val tvNodes = listNode.findAccessibilityNodeInfosByText("关注")
         tvNodes.forEach {
             if (it.text == "关注") {
-                it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                Log.d(TAG, "click" + time)
-                Thread.sleep(800)
+                if (isAttention) {
+                    it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                    Log.d(TAG, "click")
+                    Thread.sleep(800)
+                }
             } else if (it.text == "已关注") {
-                it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                Thread.sleep(400)
+                if (!isAttention) {
+                    it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                    Thread.sleep(400)
+                }
+
                 //取消点赞
 //                val stopNodes = rootInActiveWindow.findAccessibilityNodeInfosByText("停止关注")
 //                stopNodes.forEach {
