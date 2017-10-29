@@ -43,5 +43,6 @@
     <string name="title_activity_touch_event">TouchEventActivity</string>
     <string name="string_apply_ins">ins自动点赞</string>
     <string name="title_activity_instagram_pro">InstagramProActivity</string>
+    <string name="auto_attention_tips">使用方法：\n   1. 侧边栏InsPro进入页面，switch控制关注还是取关。\n  2. 进入instgram，选择想关注的列表.\n  3.返回软件， 点击 “Ins关注” 进入Insagtram， 上滑触发关注开关，即可自动点赞。\n  4. 点赞翻10页后自动返回，可重复点赞。\n  5. 或者主页github链接 查看具体方法。</string>
 
 </resources>
