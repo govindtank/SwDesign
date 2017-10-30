@@ -152,7 +152,15 @@ class MyAccessibilityService: AccessibilityService() {
         imageNodes.forEach {
             if (it.contentDescription == "赞") {
                 it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                Log.d(TAG, "click")
+                Log.d(TAG, "click like")
+                Thread.sleep(200)
+            }
+        }
+        val attentionNodes = listNode.findAccessibilityNodeInfosByText("关注")
+        attentionNodes.forEach {
+            if (it.text == "关注") {
+                it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                Log.d(TAG, "click attention")
                 Thread.sleep(200)
             }
         }
