@@ -136,6 +136,7 @@
         <activity
             android:name=".ui.ins.InstagramProActivity"
             android:label="@string/title_activity_instagram_pro"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
