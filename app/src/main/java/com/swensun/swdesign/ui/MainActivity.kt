@@ -95,28 +95,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun  goToAct(item: MenuItem) {
-        when(item.itemId) {
-            R.id.nav_recycler_view -> {
-                startActivity(Intent(this, RecyclerViewActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            }
-            R.id.nav_scroll -> {
-                startActivity(Intent(this, ScrollingIntroActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            }
-            R.id.nav_bottom_navigation -> {
-                startActivity(Intent(this, BottomNavigationActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            }
-            R.id.nav_view_pager -> {
-                startActivity(Intent(this, ViewPagerActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            }
-            R.id.nav_animator -> {
-                startActivity(Intent(this, AnimatorActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            }
-            R.id.nav_touch_event -> {
-                startActivity(Intent(this, TouchEventActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            }
-            R.id.nav_ins_pro -> {
-                startActivity(Intent(this, InstagramProActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            }
+        val cls = when(item.itemId) {
+            R.id.nav_recycler_view -> RecyclerViewActivity::class.java
+            R.id.nav_scroll -> ScrollingIntroActivity::class.java
+            R.id.nav_bottom_navigation -> BottomNavigationActivity::class.java
+            R.id.nav_view_pager -> ViewPagerActivity::class.java
+            R.id.nav_animator -> AnimatorActivity::class.java
+            R.id.nav_touch_event -> TouchEventActivity::class.java
+            R.id.nav_ins_pro -> InstagramProActivity::class.java
+            else -> RecyclerViewActivity::class.java
         }
+        startActivity(Intent(this, cls), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }
 }
