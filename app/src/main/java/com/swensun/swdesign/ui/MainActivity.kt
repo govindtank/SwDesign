@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
         nav_view.getHeaderView(0).nav_header_layout.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
-            drawer_layout.closeDrawer(GravityCompat.START)
+            drawer_layout.closeDrawer(GravityCompat.START, false)
         }
         setView()
         if (viewModel.shouldShowGuide()) {
@@ -89,9 +89,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
-        drawer_layout.closeDrawer(GravityCompat.START, true)
         goToAct(item)
+        drawer_layout.closeDrawer(GravityCompat.START, false)
         return true
     }
 
