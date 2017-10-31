@@ -64,7 +64,7 @@ class InstagramProActivity : AppCompatActivity() {
 
     private fun initSpinner() {
 
-        var pageList = arrayListOf(10, 20, 50, 100)
+        var pageList = arrayListOf(1, 2, 5)
         val pageAdapter = ArrayAdapter<Int>(this, android.R.layout.simple_list_item_1, pageList)
         cip_spinner_page.prompt = "请选择页数"
         cip_spinner_page.adapter = pageAdapter
