@@ -98,7 +98,7 @@ class InstagramProActivity : AppCompatActivity() {
                     1 -> {
                         InsSetting.action = InsAction.NOTATTENTION
                         cip_spinner_page.setSelection(0)
-                        InsSetting.interval = 10
+                        InsSetting.interval = 7
                         cip_btn_open_ins.text = "开始取关"
                     }
                     2 -> {

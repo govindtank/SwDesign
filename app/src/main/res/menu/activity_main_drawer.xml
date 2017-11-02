@@ -69,6 +69,10 @@
                 android:id="@+id/nav_ins_pro"
                 android:icon="@drawable/ic_animator_black_48dp"
                 android:title="InsPro"/>
+            <item
+                android:id="@+id/nav_ins_develop_help"
+                android:icon="@drawable/ic_animator_black_48dp"
+                android:title="@string/develop_help"/>
         </menu>
     </item>
 

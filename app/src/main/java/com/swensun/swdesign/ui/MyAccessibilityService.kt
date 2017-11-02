@@ -185,7 +185,7 @@ class MyAccessibilityService: AccessibilityService() {
                     listNodes.forEach {
                         if (it.text == "停止关注") {
                             it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                            Thread.sleep(400)
+                            Thread.sleep(500)
                         }
                     }
                 }

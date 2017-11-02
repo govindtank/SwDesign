@@ -1,47 +1,55 @@
 package com.swensun.swdesign.base
 
+import android.R
+import android.accessibilityservice.AccessibilityServiceInfo
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.Build
+import android.provider.Settings
 import android.support.annotation.ColorRes
 import android.support.annotation.DimenRes
 import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
+import android.support.design.widget.Snackbar
 import android.text.TextPaint
 import android.util.DisplayMetrics
 import android.util.TypedValue
+import android.view.MotionEvent
+import android.view.View
 import android.view.WindowManager
+import android.view.accessibility.AccessibilityManager
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.app.BaseApplication
+import org.jetbrains.annotations.NotNull
 
 
 /**
  * Created by macmini on 2017/8/17.
  */
-fun getDrawable(@DrawableRes resId: Int): Drawable? =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            BaseApplication.application.getDrawable(resId)
-        } else {
-            @Suppress("DEPRECATION")
-            BaseApplication.application.resources.getDrawable(resId)
-        }
 
-fun getString(@StringRes resId: Int) = BaseApplication.application.getString(resId) ?: ""
+val context = BaseApplication.application
 
-fun getDimen(@DimenRes resId: Int) = BaseApplication.application.resources.getDimensionPixelOffset(resId)
+fun getDrawable(@DrawableRes resId: Int): Drawable? = context.getDrawable(resId)
+
+fun getString(@StringRes resId: Int) = context.getString(resId) ?: ""
+
+fun getDimen(@DimenRes resId: Int) = context.resources.getDimensionPixelOffset(resId)
 
 fun getColor(@ColorRes resId: Int) =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            BaseApplication.application.getColor(resId)
+            context.getColor(resId)
         } else {
             @Suppress("DEPRECATION")
-            BaseApplication.application.resources.getColor(resId)
+            context.resources.getColor(resId)
         }
 
 fun getColor(color: String) = Color.parseColor(color)
@@ -49,7 +57,7 @@ fun getColor(color: String) = Color.parseColor(color)
 
 fun dp2px(value: Float): Int {
     val f = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-            value, getDisplayMetrics(BaseApplication.application.applicationContext))
+            value, getDisplayMetrics(context.applicationContext))
     val res = (f + 0.5f).toInt()
     if (res != 0) return res
     if (value == 0f) return 0
@@ -58,10 +66,10 @@ fun dp2px(value: Float): Int {
 }
 
 fun sp2px(value: Float) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
-        value, getDisplayMetrics(BaseApplication.application.applicationContext))
+        value, getDisplayMetrics(context.applicationContext))
 
 fun px2dp(pxValue: Float): Int {
-    val scale = getDisplayMetrics(BaseApplication.application.applicationContext).density
+    val scale = getDisplayMetrics(context.applicationContext).density
     return (pxValue / scale + 0.5f).toInt()
 }
 
@@ -87,14 +95,14 @@ fun showKeyboard(act: Activity) {
 }
 
 fun isNetworkAvailable(): Boolean {
-    val connectivityManager = BaseApplication.application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val ni = connectivityManager.activeNetworkInfo ?: return false
     return ni.isConnected || ni.isAvailable && ni.isConnectedOrConnecting
 }
 
 
 private fun getSize(): Point {
-    val wm = BaseApplication.application.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     val display = wm.defaultDisplay
     var size = Point()
     display.getSize(size)
@@ -110,14 +118,8 @@ fun getWinWidth(): Int {
 }
 
 fun getNavigationBarHeight(): Int {
-    BaseApplication.application.resources.let {
+    context.resources.let {
         val id = it.getIdentifier("navigation_bar_height", "dimen", "android")
-        return it.getDimensionPixelSize(id)
-    }
-}
-fun getStatusBarBarHeight(): Int {
-    BaseApplication.application.resources.let {
-        val id = it.getIdentifier("status_bar_height", "dimen", "android")
         return it.getDimensionPixelSize(id)
     }
 }
@@ -161,4 +163,46 @@ fun checkDeviceNavigation(activity: Activity): Boolean {
     val displayWidth = displayMetrics.widthPixels
 
     return realWidth - displayWidth > 0 || realHeight - displayHeight > 0
+}
+
+//click and hide keyboard
+fun isShouldHideInput(v: View?, event: MotionEvent): Boolean {
+    if (v != null && v is EditText) {
+        val leftTop = intArrayOf(0, 0)
+        v.getLocationInWindow(leftTop)
+        val left = leftTop[0]
+        val top = leftTop[1]
+        val bottom = top + v.height
+        val right = left + v.width
+        return event.x < left || event.x > right || event.y < top || event.y > bottom
+    }
+    return false
+}
+
+fun isAccessibilityServiceEnable(): Boolean {
+    val services = "ui.MyAccessibilityService"
+    val accessibilityManager = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+    val accessibilityServices = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC)
+    return accessibilityServices.any { it.id.contains(services) }
+}
+
+fun openAccessibilitySetting(context: Context) {
+    val accessibleIntent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
+    context.startActivity(accessibleIntent)
+}
+
+fun getActivityRootView(activity: Activity): View {
+    return activity.window.decorView.findViewById(R.id.content)
+}
+
+fun showSnackBar(@NotNull activity: Activity, message: String) {
+    Snackbar.make(getActivityRootView(activity), message, Snackbar.LENGTH_SHORT).show()
+}
+
+fun showSnackBar(@NotNull activity: Activity, @StringRes res: Int) {
+    Snackbar.make(getActivityRootView(activity), getString(res), Snackbar.LENGTH_SHORT).show()
+}
+
+fun showToast(message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
