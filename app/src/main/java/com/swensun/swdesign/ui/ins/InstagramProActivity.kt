@@ -6,13 +6,10 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.swensun.swdesign.R
-import com.swensun.swdesign.base.isAccessibilityServiceEnable
+import com.swensun.swdesign.base.isInsAccessibilityServiceEnable
 import com.swensun.swdesign.base.openAccessibilitySetting
 import kotlinx.android.synthetic.main.activity_instagram_pro.*
 import kotlinx.android.synthetic.main.content_instagram_pro.*
-
-
-var isAttention = true
 
 object InsSetting {
     var isAutoLike = false
@@ -48,7 +45,7 @@ class InstagramProActivity : AppCompatActivity() {
         initSpinner()
         cip_btn_open_ins.setOnClickListener {
             InsSetting.isAutoLike = true
-            if (isAccessibilityServiceEnable()) {
+            if (isInsAccessibilityServiceEnable()) {
                 val intent = packageManager.getLaunchIntentForPackage("com.instagram.android")
                 intent?.let {
                     startActivity(intent)

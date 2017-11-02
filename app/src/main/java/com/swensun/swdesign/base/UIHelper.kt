@@ -40,8 +40,8 @@ import org.jetbrains.annotations.NotNull
 private val context = BaseApplication.application
 
 
-private val accessibilityManager = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
-private val accessibilityServices = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC)
+private val accessibilityManager =
+        context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
 
 
 
@@ -188,11 +188,15 @@ fun isShouldHideInput(v: View?, event: MotionEvent): Boolean {
 
 fun isInsAccessibilityServiceEnable(): Boolean {
     val services = "ui.MyAccessibilityService"
+    val accessibilityServices =
+            accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC)
     return accessibilityServices.any { it.id.contains(services) }
 }
 
 fun isDevelopAccessibilityServiceEnable(): Boolean {
     val services = "ui.DevelopAccessibilityService"
+     val accessibilityServices =
+            accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC)
     return accessibilityServices.any { it.id.contains(services) }
 }
 

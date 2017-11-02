@@ -12,6 +12,7 @@ import android.view.MenuItem
 import com.swensun.swdesign.R
 import com.swensun.swdesign.ui.animator.AnimatorActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
+import com.swensun.swdesign.ui.develop.DevelopHelpActivity
 import com.swensun.swdesign.ui.guide.OnboardingActivity
 import com.swensun.swdesign.ui.ins.InstagramProActivity
 import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
@@ -102,6 +103,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_animator -> AnimatorActivity::class.java
             R.id.nav_touch_event -> TouchEventActivity::class.java
             R.id.nav_ins_pro -> InstagramProActivity::class.java
+            R.id.nav_ins_develop_help -> DevelopHelpActivity::class.java
             else -> RecyclerViewActivity::class.java
         }
         startActivity(Intent(this, cls), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
