@@ -36,7 +36,14 @@ import org.jetbrains.annotations.NotNull
  * Created by macmini on 2017/8/17.
  */
 
-val context = BaseApplication.application
+// 常量
+private val context = BaseApplication.application
+
+
+private val accessibilityManager = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+private val accessibilityServices = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC)
+
+
 
 fun getDrawable(@DrawableRes resId: Int): Drawable? = context.getDrawable(resId)
 
@@ -179,10 +186,13 @@ fun isShouldHideInput(v: View?, event: MotionEvent): Boolean {
     return false
 }
 
-fun isAccessibilityServiceEnable(): Boolean {
+fun isInsAccessibilityServiceEnable(): Boolean {
     val services = "ui.MyAccessibilityService"
-    val accessibilityManager = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
-    val accessibilityServices = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC)
+    return accessibilityServices.any { it.id.contains(services) }
+}
+
+fun isDevelopAccessibilityServiceEnable(): Boolean {
+    val services = "ui.DevelopAccessibilityService"
     return accessibilityServices.any { it.id.contains(services) }
 }
 
@@ -206,3 +216,6 @@ fun showSnackBar(@NotNull activity: Activity, @StringRes res: Int) {
 fun showToast(message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
+
+// 检测开发者选项是否打开: 此方法可以检测Setting.Global下的所有设置是否打开
+fun checkDevelopSettings() = Settings.Secure.getInt(context.contentResolver, Settings.Global.DEVELOPMENT_SETTINGS_ENABLED) == 1

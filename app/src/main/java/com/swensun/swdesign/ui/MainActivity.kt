@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.swensun.swdesign.R
 import com.swensun.swdesign.ui.animator.AnimatorActivity
-import com.swensun.swdesign.ui.animator.PathMeasureActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
 import com.swensun.swdesign.ui.guide.OnboardingActivity
 import com.swensun.swdesign.ui.ins.InstagramProActivity
@@ -57,9 +56,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setView() {
 
         app_info_layout.setOnClickListener {
-            val intent = Intent(this, PathMeasureActivity::class.java)
-            val options = ActivityOptions.makeSceneTransitionAnimation(this, it, "sharedView")
-            startActivity(intent, options.toBundle())
+//            val intent = Intent(this, PathMeasureActivity::class.java)
+//            val options = ActivityOptions.makeSceneTransitionAnimation(this, it, "sharedView")
+//            startActivity(intent, options.toBundle())
         }
 
     }

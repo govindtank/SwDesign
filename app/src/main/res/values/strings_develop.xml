@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="develop_help">开发者助手</string>
+    <string name="string_apply_develop">Parrot开发者助手</string>
 </resources>
