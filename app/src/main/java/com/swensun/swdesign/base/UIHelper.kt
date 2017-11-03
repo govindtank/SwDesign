@@ -187,14 +187,14 @@ fun isShouldHideInput(v: View?, event: MotionEvent): Boolean {
 }
 
 fun isInsAccessibilityServiceEnable(): Boolean {
-    val services = "ui.MyAccessibilityService"
+    val services = "service.MyAccessibilityService"
     val accessibilityServices =
             accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC)
     return accessibilityServices.any { it.id.contains(services) }
 }
 
 fun isDevelopAccessibilityServiceEnable(): Boolean {
-    val services = "ui.DevelopAccessibilityService"
+    val services = "service.DevelopAccessibilityService"
      val accessibilityServices =
             accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC)
     return accessibilityServices.any { it.id.contains(services) }
@@ -204,6 +204,8 @@ fun openAccessibilitySetting(context: Context) {
     val accessibleIntent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
     context.startActivity(accessibleIntent)
 }
+
+
 
 fun getActivityRootView(activity: Activity): View {
     return activity.window.decorView.findViewById(R.id.content)
@@ -229,3 +231,7 @@ fun showToast(message: String) {
 
 // 检测开发者选项是否打开: 此方法可以检测Setting.Global下的所有设置是否打开
 fun checkDevelopSettings() = Settings.Secure.getInt(context.contentResolver, Settings.Global.DEVELOPMENT_SETTINGS_ENABLED) == 1
+
+fun checkSettingsAble(settings: String): Boolean {
+    return Settings.Secure.getInt(context.contentResolver, settings) == 1
+}

@@ -96,7 +96,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <service
-            android:name=".ui.StartupService"
+            android:name=".service.StartupService"
             android:process=":startup"/>
 
         <activity
@@ -111,10 +111,11 @@
         <activity
             android:name=".ui.develop.DevelopHelpActivity"
             android:label="@string/title_activity_develop_help"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <service
-            android:name=".ui.MyAccessibilityService"
+            android:name=".service.MyAccessibilityService"
             android:enabled="true"
             android:exported="true"
             android:label="@string/string_apply_ins"
@@ -128,7 +129,7 @@
                 android:resource="@xml/ins_accessibility_service_config" />
         </service>
         <service
-            android:name=".ui.DevelopAccessibilityService"
+            android:name=".service.DevelopAccessibilityService"
             android:enabled="true"
             android:exported="true"
             android:label="@string/string_apply_develop"

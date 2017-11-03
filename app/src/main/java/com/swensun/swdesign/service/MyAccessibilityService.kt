@@ -1,4 +1,4 @@
-package com.swensun.swdesign.ui
+package com.swensun.swdesign.service
 
 import android.accessibilityservice.AccessibilityService
 import android.content.Intent
@@ -62,7 +62,7 @@ class MyAccessibilityService: AccessibilityService() {
                     listNode?.let { note ->
                         observer = Observable.interval(InsSetting.interval.toLong(), TimeUnit.SECONDS).take(InsSetting.page.toLong())
                                 .doOnSubscribe {
-                                    Log.d(MyAccessibilityService.TAG, "begin")
+                                    Log.d(TAG, "begin")
                                 }
                                 .doOnComplete {
                                     observer = null

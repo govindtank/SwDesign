@@ -1,9 +1,8 @@
-package com.swensun.swdesign.ui
+package com.swensun.swdesign.service
 
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-
 import com.orhanobut.logger.Logger
 
 
