@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -65,18 +65,10 @@ class DevelopHelpActivity : AppCompatActivity() {
 
     private fun initView() {
         val adaper = RecyclerViewAdapter(this)
-        cdh_recycler_develop.layoutManager = LinearLayoutManager(this)
+        cdh_recycler_develop.layoutManager = GridLayoutManager(this, 2)
         adaper.setItemList(actionList)
         cdh_recycler_develop.adapter = adaper
         cdh_recycler_develop.setHasFixedSize(true)
-//        develop.setOnClickListener {
-//            if (isDevelopAccessibilityServiceEnable()) {
-//                val intent = Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS)
-//                startActivity(intent)
-//            } else {
-//                openAccessibilitySetting(this)
-//            }
-//        }
     }
 
     inner class RecyclerViewAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -135,7 +127,7 @@ class DevelopHelpActivity : AppCompatActivity() {
                     .setNegativeButton(R.string.cancle, null)
                     .setPositiveButton(R.string.comfirm, { _, which ->
                         Logger.d("to open" +  which)
-                        //跳转到开发者选项页面
+                        //跳转到无障碍服务页面
                         openAccessibilitySetting(this@DevelopHelpActivity)
                     })
                     .show()
