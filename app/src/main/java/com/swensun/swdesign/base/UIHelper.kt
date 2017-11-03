@@ -213,6 +213,12 @@ fun showSnackBar(@NotNull activity: Activity, message: String) {
     Snackbar.make(getActivityRootView(activity), message, Snackbar.LENGTH_SHORT).show()
 }
 
+fun showSnackBar(@NotNull activity: Activity, message: String, actionMessage: String, actionListener: View.OnClickListener) {
+    Snackbar.make(getActivityRootView(activity), message, Snackbar.LENGTH_SHORT)
+            .setAction(actionMessage, actionListener)
+            .show()
+}
+
 fun showSnackBar(@NotNull activity: Activity, @StringRes res: Int) {
     Snackbar.make(getActivityRootView(activity), getString(res), Snackbar.LENGTH_SHORT).show()
 }

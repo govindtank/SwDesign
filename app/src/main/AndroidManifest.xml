@@ -44,65 +44,74 @@
             android:name=".ui.MainActivity"
             android:label="@string/title_activity_main"
             android:launchMode="singleTask"
-            android:theme="@style/MainTheme.NoActionBar"></activity>
+            android:theme="@style/MainTheme.NoActionBar"/>
         <activity
             android:name=".ui.LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".ui.MainActivity"></activity>
+            android:parentActivityName=".ui.MainActivity"/>
         <activity
             android:name=".ui.recycler.RecyclerViewActivity"
             android:label="@string/title_activity_recycler_view"
             android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.recycler.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:parentActivityName=".ui.recycler.RecyclerViewActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.scroll.ScrollingIntroActivity"
             android:label="Material Design"
             android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.bottom.BottomNavigationActivity"
-            android:label="@string/title_activity_bottom_navigation"></activity>
+            android:label="@string/title_activity_bottom_navigation"/>
         <activity
             android:name=".ui.viewpager.ViewPagerActivity"
             android:label="@string/title_activity_view_pager"
             android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.animator.AnimatorActivity"
             android:label="@string/title_activity_animator"
             android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.animator.CircularRevealActivity"
             android:label="@string/title_activity_circular_reveal"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.animator.TransitionActivity"
             android:label="@string/title_activity_transition"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.animator.PathMeasureActivity"
             android:label="@string/title_activity_path_measure"
             android:parentActivityName=".ui.animator.AnimatorActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.guide.OnboardingActivity"
             android:label="@string/title_activity_onboarding"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <service
             android:name=".ui.StartupService"
-            android:process=":startup"></service>
+            android:process=":startup"/>
 
         <activity
             android:name=".ui.touchevent.TouchEventActivity"
             android:label="@string/title_activity_touch_event"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.ins.InstagramProActivity"
+            android:label="@string/title_activity_instagram_pro"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.develop.DevelopHelpActivity"
+            android:label="@string/title_activity_develop_help"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <service
             android:name=".ui.MyAccessibilityService"
@@ -133,15 +142,7 @@
                 android:resource="@xml/develop_accessibility_service_config" />
         </service>
 
-        <activity
-            android:name=".ui.ins.InstagramProActivity"
-            android:label="@string/title_activity_instagram_pro"
-            android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".ui.develop.DevelopHelpActivity"
-            android:label="@string/title_activity_develop_help"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

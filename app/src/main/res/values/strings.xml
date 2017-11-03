@@ -45,5 +45,7 @@
     <string name="title_activity_instagram_pro">InstagramProActivity</string>
     <string name="auto_attention_tips">使用方法：\n   1. 侧边栏InsPro进入页面，设置行为。\n  2. 进入instagram，选择想关注(点赞)的列表.\n  3.返回软件， 点击按钮， 进入Insatgram，即可自动点赞。\n  4. 完成后自动返回，可重复点赞。\n  5. 或者主页github链接 查看具体方法。</string>
     <string name="title_activity_develop_help">DevelopHelpActivity</string>
+    <string name="cancle">取消</string>
+    <string name="comfirm">确认</string>
 
 </resources>

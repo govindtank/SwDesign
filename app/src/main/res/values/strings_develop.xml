@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="develop_help">开发者助手</string>
     <string name="string_apply_develop">Parrot开发者助手</string>
+    <string name="string_apply_develop_tips">此功能用于快速设置部分开发者选项的内容，如USB调试等， 从而节省您的时间。</string>
+    <string name="nav_develop_help">开发者助手</string>
 </resources>

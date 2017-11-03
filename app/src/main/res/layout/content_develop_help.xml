@@ -8,12 +8,12 @@
     tools:context="com.swensun.swdesign.ui.develop.DevelopHelpActivity"
     tools:showIn="@layout/activity_develop_help">
 
-    <Button
-        android:id="@+id/develop"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cdh_recycler_develop"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="develop"/>
+        app:layout_constraintRight_toRightOf="parent">
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
