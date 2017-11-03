@@ -64,7 +64,7 @@ class DevelopAccessibilityService : AccessibilityService() {
                     }
                     DevelopAction.USB_DEBUG_ONE, DevelopAction.USB_DEBUG_TWO -> {
                         //开发者选项
-                        startActivity(Intent(this, DevelopHelpActivity::class.java))
+                        clickUSBItem(listNode)
                     }
                     DevelopAction.PROFILE_GPU_RENDERING, DevelopAction.DEBUG_GPU_OVERDRAW -> {
                         //二级菜单
@@ -76,6 +76,26 @@ class DevelopAccessibilityService : AccessibilityService() {
                 }
 
             }
+        }
+    }
+
+    private fun clickUSBItem(listNode: AccessibilityNodeInfo) {
+        val usbActions = arrayListOf(DevelopAction.USB_DEBUG_ONE, DevelopAction.USB_DEBUG_TWO)
+        usbActions.forEach one@{ action ->
+            (0..10).forEach {
+                val tempSwitchNodes = rootInActiveWindow.findAccessibilityNodeInfosByText(action)
+                if (tempSwitchNodes.size == 1) {
+                    val parentNode = tempSwitchNodes[0].parent
+                    val parentChild = tempSwitchNodes[0].parent.childCount
+                    if (parentChild != 3) return@one
+                    parentNode.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                    startActivity(Intent(this, DevelopHelpActivity::class.java))
+                    return
+                } else {
+                    listNode.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
+                }
+            }
+            startActivity(Intent(this, DevelopHelpActivity::class.java))
         }
     }
 
