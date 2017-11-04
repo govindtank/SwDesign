@@ -6,6 +6,7 @@ import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.ui.develop.DevelopHelpActivity
+import org.jetbrains.anko.toast
 
 /**
  * Created by macmini on 2017/11/2.
@@ -45,7 +46,14 @@ class DevelopAccessibilityService : AccessibilityService() {
         if (event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
             Logger.d(DevelopSettings.isAuto)
             if (DevelopSettings.isAuto) {
-                autoSettings()
+                if (DevelopSettings.developData.info == DevelopAction.DEVELOP_SETTINGS) {
+                    //开发者选项
+                    clickDevelopItem()
+                } else {
+                    autoSettings()
+                }
+
+
             }
         }
     }
@@ -55,26 +63,72 @@ class DevelopAccessibilityService : AccessibilityService() {
 
         if (tempRecyclerNodes.size == 1) {
             tempRecyclerNodes[0].let { listNode ->
-
-
                 when (DevelopSettings.developData.info) {
-                    DevelopAction.DEVELOP_SETTINGS -> {
-                        //开发者选项
-                        startActivity(Intent(this, DevelopHelpActivity::class.java))
-                    }
                     DevelopAction.USB_DEBUG_ONE, DevelopAction.USB_DEBUG_TWO -> {
-                        //开发者选项
+                        //usb 调试
                         clickUSBItem(listNode)
                     }
-                    DevelopAction.PROFILE_GPU_RENDERING, DevelopAction.DEBUG_GPU_OVERDRAW -> {
+                    DevelopAction.DEBUG_GPU_OVERDRAW -> {
                         //二级菜单
-                        startActivity(Intent(this, DevelopHelpActivity::class.java))
+                        clickGPUIOverdrawItem(listNode)
                     }
                     else -> {
                         clickNormalItem(listNode)
                     }
                 }
 
+            }
+        }
+    }
+
+    private fun clickGPUIOverdrawItem(listNode: AccessibilityNodeInfo) {
+        (0..10).forEach {
+            val tempSwitchNodes = rootInActiveWindow.findAccessibilityNodeInfosByText(DevelopSettings.developData.info)
+            if (tempSwitchNodes.size == 1) {
+                val parentNode = tempSwitchNodes[0].parent
+                parentNode.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                Thread.sleep(100)
+                //弹出对话框
+                val checkNodes = rootInActiveWindow.findAccessibilityNodeInfosByText("关闭")
+                checkNodes?.let {
+                    if (it[0].isChecked) {
+                        val overdrawNodes = rootInActiveWindow.findAccessibilityNodeInfosByText("显示过度绘制区域")
+                        overdrawNodes?.let {
+                            it[0].performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                            toast("已打开 ${DevelopSettings.developData.info}")
+                        }
+                    } else {
+                        it[0].performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                        toast("已关闭 ${DevelopSettings.developData.info}")
+                    }
+                    goToDevelopHelpActivity()
+                    return
+                }
+            } else {
+                listNode.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
+            }
+        }
+        goToDevelopHelpActivity()
+    }
+
+    private fun clickDevelopItem() {
+        val switchNodes = rootInActiveWindow.findAccessibilityNodeInfosByViewId("com.android.settings:id/switch_bar")
+        if (switchNodes.size == 1) {
+            switchNodes[0].let {
+                if (it.text == "开启") {
+                    it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                    toast("已关闭 开发者选项")
+                    goToDevelopHelpActivity()
+                } else {
+                    it.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                    Thread.sleep(100)
+                    val confirmNodes = rootInActiveWindow.findAccessibilityNodeInfosByText("确定")
+                    if (confirmNodes.size == 1) {
+                        confirmNodes[0].performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                        toast("已打开 开发者选项")
+                        goToDevelopHelpActivity()
+                    }
+                }
             }
         }
     }
@@ -88,14 +142,28 @@ class DevelopAccessibilityService : AccessibilityService() {
                     val parentNode = tempSwitchNodes[0].parent
                     val parentChild = tempSwitchNodes[0].parent.childCount
                     if (parentChild != 3) return@one
-                    parentNode.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                    startActivity(Intent(this, DevelopHelpActivity::class.java))
-                    return
+                    val switchNode = parentNode.getChild(2)
+                    if (switchNode.text == "ON") {
+                        parentNode.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                        toast("已关闭 USB调试")
+                        goToDevelopHelpActivity()
+                        return
+                    } else {
+                        parentNode.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                        Thread.sleep(100)
+                        val confirmNodes = rootInActiveWindow.findAccessibilityNodeInfosByText("确定")
+                        if (confirmNodes.size == 1) {
+                            confirmNodes[0].performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                            toast("已打开 USB调试")
+                            goToDevelopHelpActivity()
+                            return
+                        }
+                    }
                 } else {
                     listNode.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
                 }
             }
-            startActivity(Intent(this, DevelopHelpActivity::class.java))
+            goToDevelopHelpActivity()
         }
     }
 
@@ -108,20 +176,27 @@ class DevelopAccessibilityService : AccessibilityService() {
                 //save info
                 switchNode?.let {
                     if (it.text == "OFF") {
-                        DevelopSettings.itemSwitchOn = OpenMark.TRUE
+                        toast("已打开 ${DevelopSettings.developData.info}")
                     } else {
-                        DevelopSettings.itemSwitchOn = OpenMark.FALSE
+                        toast("已关闭 ${DevelopSettings.developData.info}")
                     }
                 }
 
                 parentNode.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                startActivity(Intent(this, DevelopHelpActivity::class.java))
+                goToDevelopHelpActivity()
                 return
             } else {
                 listNode.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
             }
         }
+        goToDevelopHelpActivity()
+
+    }
+
+    fun goToDevelopHelpActivity() {
         startActivity(Intent(this, DevelopHelpActivity::class.java))
+        DevelopSettings.isAuto = false
+        return
     }
 
 

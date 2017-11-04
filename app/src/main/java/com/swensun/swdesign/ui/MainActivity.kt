@@ -2,6 +2,7 @@ package com.swensun.swdesign.ui
 
 import android.app.ActivityOptions
 import android.arch.lifecycle.ViewModelProviders
+import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -26,8 +27,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 
-
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val viewModel: MainViewModel by lazy {
         ViewModelProviders.of(this).get(MainViewModel::class.java)
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
-        nav_view.getHeaderView(0).nav_header_layout.setOnClickListener{
+        nav_view.getHeaderView(0).nav_header_layout.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             drawer_layout.closeDrawer(GravityCompat.START, false)
         }
@@ -57,11 +57,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setView() {
 
         app_info_layout.setOnClickListener {
-//            val intent = Intent(this, PathMeasureActivity::class.java)
+            //            val intent = Intent(this, PathMeasureActivity::class.java)
 //            val options = ActivityOptions.makeSceneTransitionAnimation(this, it, "sharedView")
 //            startActivity(intent, options.toBundle())
-        }
 
+//            developSettingIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//          com.android.settings/.Settings$DevelopmentSettingsActivity
+
+
+        }
     }
 
     override fun onBackPressed() {
@@ -94,8 +98,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    private fun  goToAct(item: MenuItem) {
-        val cls = when(item.itemId) {
+    private fun goToAct(item: MenuItem) {
+        val cls = when (item.itemId) {
             R.id.nav_recycler_view -> RecyclerViewActivity::class.java
             R.id.nav_scroll -> ScrollingIntroActivity::class.java
             R.id.nav_bottom_navigation -> BottomNavigationActivity::class.java

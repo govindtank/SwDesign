@@ -231,7 +231,4 @@ fun showToast(message: String) {
 
 // 检测开发者选项是否打开: 此方法可以检测Setting.Global下的所有设置是否打开
 fun checkDevelopSettings() = Settings.Secure.getInt(context.contentResolver, Settings.Global.DEVELOPMENT_SETTINGS_ENABLED) == 1
-
-fun checkSettingsAble(settings: String): Boolean {
-    return Settings.Secure.getInt(context.contentResolver, settings) == 1
-}
+fun checkUsbDebugSettings() = Settings.Secure.getInt(context.contentResolver, Settings.Global.ADB_ENABLED) == 1
