@@ -2,7 +2,6 @@ package com.swensun.swdesign.ui
 
 import android.app.ActivityOptions
 import android.arch.lifecycle.ViewModelProviders
-import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -14,6 +13,7 @@ import com.swensun.swdesign.R
 import com.swensun.swdesign.ui.animator.AnimatorActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
 import com.swensun.swdesign.ui.develop.DevelopHelpActivity
+import com.swensun.swdesign.ui.develop.DeviceInfoActivity
 import com.swensun.swdesign.ui.guide.OnboardingActivity
 import com.swensun.swdesign.ui.ins.InstagramProActivity
 import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_touch_event -> TouchEventActivity::class.java
             R.id.nav_ins_pro -> InstagramProActivity::class.java
             R.id.nav_ins_develop_help -> DevelopHelpActivity::class.java
+            R.id.nav_ins_device_info -> DeviceInfoActivity::class.java
             else -> RecyclerViewActivity::class.java
         }
         startActivity(Intent(this, cls), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())

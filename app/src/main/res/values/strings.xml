@@ -47,5 +47,7 @@
     <string name="title_activity_develop_help">DevelopHelpActivity</string>
     <string name="cancle">取消</string>
     <string name="comfirm">确认</string>
+    <string name="nav_device_info">设备信息</string>
+    <string name="title_activity_device_info">DeviceInfoActivity</string>
 
 </resources>

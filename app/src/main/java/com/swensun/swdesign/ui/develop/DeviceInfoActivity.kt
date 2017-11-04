@@ -1,0 +1,144 @@
+package com.swensun.swdesign.ui.develop
+
+import android.content.Context
+import android.os.Build
+import android.os.Bundle
+import android.os.Environment
+import android.os.StatFs
+import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.text.format.Formatter
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import com.swensun.swdesign.R
+import com.swensun.swdesign.base.getDisplayMetrics
+import com.swensun.swdesign.base.getMemInfo
+import com.swensun.swdesign.base.getSDAvaildableSize
+import com.swensun.swdesign.base.getSDTotalSize
+import kotlinx.android.synthetic.main.activity_device_info.*
+import kotlinx.android.synthetic.main.content_device_info.*
+
+class DeviceInfoActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_device_info)
+        setSupportActionBar(toolbar)
+        initView()
+    }
+
+    private fun initView() {
+        cdi_recycler_device.layoutManager = LinearLayoutManager(this)
+        cdi_recycler_device.setHasFixedSize(true)
+        cdi_recycler_device.adapter = RecyclerViewAdapter(this)
+    }
+
+    inner class RecyclerViewAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+        private var mItemList = arrayListOf("系统信息", "屏幕信息", "硬件信息", "网络状态")
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder? {
+            val view = LayoutInflater.from(context).inflate(R.layout.view_device_info_item, parent, false)
+            return NormalItemViewHolder(itemView = view)
+        }
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            (holder as NormalItemViewHolder).updateView(mItemList[position])
+        }
+
+        override fun getItemCount(): Int {
+            return mItemList.size
+        }
+
+    }
+
+    inner class NormalItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val infoView: TextView = itemView.findViewById(R.id.vdii_tv_info)
+        private val detailView: TextView = itemView.findViewById(R.id.vdii_tv_detail)
+
+        fun updateView(action: String) {
+            infoView.text = action
+            detailView.visibility = View.GONE
+            itemView.setOnClickListener {
+                when (adapterPosition) {
+                    0 -> {
+                        showVersionInfo()
+                    }
+                    1 -> {
+                        showScreenInfo()
+                    }
+                    2 -> {}
+                    3 -> {}
+                    4 -> {}
+                    else -> {}
+                }
+            }
+        }
+    }
+
+    private fun showVersionInfo() {
+        val model = Build.MODEL
+        val manufacture = Build.BRAND
+        val release = Build.VERSION.RELEASE
+        val sdk_int = Build.VERSION.SDK_INT
+
+        val path = Environment.getExternalStorageDirectory()
+        val stas = StatFs(path.path)
+        val blockSize = stas.blockSizeLong
+
+        val totalBlocks = stas.blockCountLong
+        val availableBlocks = stas.availableBlocksLong
+        val totalSize = Formatter.formatFileSize(this, blockSize * totalBlocks)
+        val availdSize = Formatter.formatFileSize(this, blockSize * availableBlocks)
+        getMemInfo()
+
+        val info = "制造商： $manufacture \n" +
+                "手机型号： $model \n" +
+                "版本号： $release \n" +
+                "API版本： $sdk_int \n" +
+                "运行内存: ${ getMemInfo()} \n" +
+                "SD内存： ${getSDAvaildableSize()} / ${getSDTotalSize()} \n"
+        AlertDialog.Builder(this@DeviceInfoActivity).setTitle("版本信息").setMessage(info)
+                .setPositiveButton("分享", null)
+                .setNegativeButton("复制", null)
+                .show()
+    }
+
+    private fun showScreenInfo() {
+        val displayMetrics = getDisplayMetrics()
+        val height = displayMetrics.heightPixels
+        val width = displayMetrics.widthPixels
+
+        val densityDpi = displayMetrics.densityDpi
+        val density = displayMetrics.density
+        val realXdpi = displayMetrics.xdpi
+        val realYdpi = displayMetrics.ydpi
+        val dpi: String = when (density.toInt()) {
+            2 ->{ "xhdpi"}
+            3 ->{"xxhdpi"}
+            4 ->{"xxxhdpi"}
+            else -> {"no dpi"}
+        }
+
+        val physicsWidth = Math.round( width / realXdpi * 10) / 10f
+        val physicsHeight = Math.round( height / realYdpi * 10) / 10f
+
+        val tempInch = Math.sqrt(((physicsHeight * physicsHeight +
+                physicsWidth * physicsWidth).toDouble())
+        )
+        val physicsInch =  Math.round( tempInch * 10) / 10f
+
+        val info = "屏幕分辨率：$width * $height px \n" +
+                "设备密度：$densityDpi dp / $dpi  / $density x \n" +
+                "实际密度：$realXdpi dp / $realYdpi dp \n" +
+                "物理尺寸：$physicsWidth * $physicsHeight / $physicsInch 英寸"
+        AlertDialog.Builder(this@DeviceInfoActivity).setTitle("屏幕信息").setMessage(info)
+                .setPositiveButton("分享", null)
+                .setNegativeButton("复制", null)
+                .show()
+    }
+}

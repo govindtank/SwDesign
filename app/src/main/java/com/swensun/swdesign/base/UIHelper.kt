@@ -3,6 +3,7 @@ package com.swensun.swdesign.base
 import android.R
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.app.Activity
+import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -10,6 +11,8 @@ import android.graphics.Point
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.Build
+import android.os.Environment
+import android.os.StatFs
 import android.provider.Settings
 import android.support.annotation.ColorRes
 import android.support.annotation.DimenRes
@@ -17,6 +20,7 @@ import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.text.TextPaint
+import android.text.format.Formatter
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.MotionEvent
@@ -44,6 +48,7 @@ private val accessibilityManager =
         context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
 
 
+private val phonePath = Environment.getDataDirectory()
 
 fun getDrawable(@DrawableRes resId: Int): Drawable? = context.getDrawable(resId)
 
@@ -64,7 +69,7 @@ fun getColor(color: String) = Color.parseColor(color)
 
 fun dp2px(value: Float): Int {
     val f = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-            value, getDisplayMetrics(context.applicationContext))
+            value, getDisplayMetrics())
     val res = (f + 0.5f).toInt()
     if (res != 0) return res
     if (value == 0f) return 0
@@ -73,14 +78,14 @@ fun dp2px(value: Float): Int {
 }
 
 fun sp2px(value: Float) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
-        value, getDisplayMetrics(context.applicationContext))
+        value, getDisplayMetrics())
 
 fun px2dp(pxValue: Float): Int {
-    val scale = getDisplayMetrics(context.applicationContext).density
+    val scale = getDisplayMetrics().density
     return (pxValue / scale + 0.5f).toInt()
 }
 
-fun getDisplayMetrics(context: Context): DisplayMetrics {
+fun getDisplayMetrics(): DisplayMetrics {
     return context.resources.displayMetrics
 }
 
@@ -232,3 +237,27 @@ fun showToast(message: String) {
 // 检测开发者选项是否打开: 此方法可以检测Setting.Global下的所有设置是否打开
 fun checkDevelopSettings() = Settings.Secure.getInt(context.contentResolver, Settings.Global.DEVELOPMENT_SETTINGS_ENABLED) == 1
 fun checkUsbDebugSettings() = Settings.Secure.getInt(context.contentResolver, Settings.Global.ADB_ENABLED) == 1
+
+fun getSDTotalSize(): String? {
+    val sdPath = Environment.getExternalStorageDirectory()
+    val statfs = StatFs(sdPath.path)
+    val blockSize = statfs.blockSizeLong
+    val totalBlocks = statfs.blockCountLong
+    return Formatter.formatFileSize(context, blockSize * totalBlocks)
+}
+fun getSDAvaildableSize(): String? {
+    val sdPath = Environment.getExternalStorageDirectory()
+    val statfs = StatFs(sdPath.path)
+    val blockSize = statfs.blockSizeLong
+    val availableBlocksLong = statfs.availableBlocksLong
+    return Formatter.formatFileSize(context, blockSize * availableBlocksLong)
+}
+
+fun getMemInfo(): String {
+    val memInfo = ActivityManager.MemoryInfo()
+    val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    am.getMemoryInfo(memInfo)
+    val availMem = Formatter.formatFileSize(context, memInfo.availMem)
+    val totalMem = Formatter.formatFileSize(context, memInfo.totalMem)
+    return "$availMem / $totalMem"
+}
