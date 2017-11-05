@@ -1,6 +1,8 @@
 package com.swensun.swdesign.ui.develop
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -72,12 +74,47 @@ class DeviceInfoActivity : AppCompatActivity() {
                         showScreenInfo()
                     }
                     2 -> {}
-                    3 -> {}
-                    4 -> {}
+                    3 -> {
+                        showNetWorkInfo()
+                    }
                     else -> {}
                 }
             }
         }
+    }
+
+    private fun showNetWorkInfo() {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        var netName = ""
+        var netConnectName = ""
+        if (networkInfo != null && networkInfo.isAvailable) {
+            netName = networkInfo.typeName
+            if (networkInfo.type == ConnectivityManager.TYPE_MOBILE) {
+                netConnectName = networkInfo.subtypeName
+            } else if (networkInfo.type == ConnectivityManager.TYPE_WIFI) {
+                val wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+                val wifiInfo = wifiManager.connectionInfo
+                wifiInfo?.let {
+                    netConnectName = it.ssid
+                }
+            } else {
+                netName = "unknown"
+                netConnectName = "unknown"
+            }
+        } else {
+            //无网络
+            netName = "disconnect"
+            netConnectName = "null"
+        }
+
+        val info = "网络连接：$netName \n" +
+                "连接名称：$netConnectName "
+        AlertDialog.Builder(this@DeviceInfoActivity).setTitle("网络状态").setMessage(info)
+                .setPositiveButton("分享", null)
+                .setNegativeButton("复制", null)
+                .show()
+
     }
 
     private fun showVersionInfo() {
