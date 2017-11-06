@@ -9,8 +9,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import com.swensun.swdesign.R
-import com.swensun.swdesign.base.getColor
 import com.swensun.swdesign.ui.MainActivity
+import com.swensun.swutils.util.getColor
 import kotlinx.android.synthetic.main.activity_onboarding.view.*
 import kotlinx.android.synthetic.main.view_onboarding_bottom.view.*
 

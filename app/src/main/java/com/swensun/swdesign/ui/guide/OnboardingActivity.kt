@@ -11,7 +11,7 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
 import com.swensun.swdesign.R
-import com.swensun.swdesign.base.getColor
+import com.swensun.swutils.util.getColor
 import kotlinx.android.synthetic.main.activity_onboarding.*
 
 val fragment_layout_key = "fragment_layout"

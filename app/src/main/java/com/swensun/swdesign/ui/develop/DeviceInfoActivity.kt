@@ -18,10 +18,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.swensun.swdesign.R
-import com.swensun.swdesign.base.getDisplayMetrics
-import com.swensun.swdesign.base.getMemInfo
-import com.swensun.swdesign.base.getSDAvaildableSize
-import com.swensun.swdesign.base.getSDTotalSize
+import com.swensun.swutils.util.getDisplayMetrics
+import com.swensun.swutils.util.getMemInfo
+import com.swensun.swutils.util.getSDAvaildableSize
+import com.swensun.swutils.util.getSDTotalSize
 import kotlinx.android.synthetic.main.activity_device_info.*
 import kotlinx.android.synthetic.main.content_device_info.*
 

@@ -15,7 +15,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
-import com.swensun.swdesign.base.dp2px
+import com.swensun.swutils.util.dp2px
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

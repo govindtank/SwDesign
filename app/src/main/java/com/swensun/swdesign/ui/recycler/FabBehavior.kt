@@ -8,8 +8,7 @@ import android.support.v4.view.ViewCompat
 import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.util.AttributeSet
 import android.view.View
-import com.swensun.swdesign.base.dp2px
-
+import com.swensun.swutils.util.dp2px
 
 
 class FabBehavior(context: Context, attrs: AttributeSet) : FloatingActionButton.Behavior(context, attrs) {

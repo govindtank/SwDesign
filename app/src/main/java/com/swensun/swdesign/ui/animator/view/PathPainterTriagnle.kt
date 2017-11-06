@@ -6,7 +6,8 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
-import com.swensun.swdesign.base.sp2px
+import com.swensun.swutils.util.sp2px
+
 
 /**
  * Created by macmini on 2017/8/23.

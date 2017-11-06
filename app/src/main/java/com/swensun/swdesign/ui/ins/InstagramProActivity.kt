@@ -6,8 +6,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.swensun.swdesign.R
-import com.swensun.swdesign.base.isInsAccessibilityServiceEnable
-import com.swensun.swdesign.base.openAccessibilitySetting
+import com.swensun.swutils.util.isInsAccessibilityServiceEnable
+import com.swensun.swutils.util.openAccessibilitySetting
 import kotlinx.android.synthetic.main.activity_instagram_pro.*
 import kotlinx.android.synthetic.main.content_instagram_pro.*
 

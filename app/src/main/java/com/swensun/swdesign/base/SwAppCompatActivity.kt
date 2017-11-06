@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
+import com.swensun.swutils.util.isShouldHideInput
 
 /**
  * Created by on 2017/5/3.

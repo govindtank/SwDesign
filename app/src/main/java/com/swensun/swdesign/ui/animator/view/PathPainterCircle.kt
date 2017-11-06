@@ -8,7 +8,8 @@ import android.graphics.Path
 import android.graphics.PathMeasure
 import android.util.AttributeSet
 import android.view.View
-import com.swensun.swdesign.base.getColor
+import com.swensun.swutils.util.getColor
+
 
 /**
  * Created by macmini on 2017/8/23.

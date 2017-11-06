@@ -6,7 +6,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import com.swensun.swdesign.R
-import com.swensun.swdesign.base.getColor
+import com.swensun.swutils.util.getColor
 
 /**
  * Created by macmini on 2017/8/24.

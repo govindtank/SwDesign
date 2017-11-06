@@ -14,11 +14,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
-import com.swensun.swdesign.base.*
 import com.swensun.swdesign.service.DevelopAction
 import com.swensun.swdesign.service.DevelopData
 import com.swensun.swdesign.service.DevelopSettings
 import com.swensun.swdesign.ui.MainActivity
+import com.swensun.swutils.util.*
 import kotlinx.android.synthetic.main.activity_develop_help.*
 import kotlinx.android.synthetic.main.content_develop_help.*
 
