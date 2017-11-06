@@ -12,9 +12,6 @@ import javax.inject.Singleton
 @Singleton
 class SharedPerfsManager @Inject constructor() {
 
-
-
-
     val mSharedPreferences = BaseApplication.application.getSharedPreferences("parrot", Context.MODE_PRIVATE)
 
     fun put(key: String, value: String) {

@@ -1,7 +1,8 @@
-package com.swensun.swdesign.base
+package com.swensun.swutils.util
 
 import android.R
 import android.accessibilityservice.AccessibilityServiceInfo
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
@@ -22,6 +23,7 @@ import android.support.design.widget.Snackbar
 import android.text.TextPaint
 import android.text.format.Formatter
 import android.util.DisplayMetrics
+import android.util.Log
 import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
@@ -31,34 +33,25 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.orhanobut.logger.Logger
-import com.swensun.swdesign.app.BaseApplication
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import org.jetbrains.annotations.NotNull
 import java.util.concurrent.TimeUnit
 
-
 /**
  * Created by macmini on 2017/8/17.
  */
 
+val TAG = "UIHelper"
+
 // 常量
-private val context = BaseApplication.application
-
-
+private val context: Context = if (SwUtils.context != null) SwUtils.context!! else throw  NullPointerException("should init first")
 private val accessibilityManager =
         context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
-
-
 private val phonePath = Environment.getDataDirectory()
-
 fun getDrawable(@DrawableRes resId: Int): Drawable? = context.getDrawable(resId)
-
 fun getString(@StringRes resId: Int) = context.getString(resId) ?: ""
-
 fun getDimen(@DimenRes resId: Int) = context.resources.getDimensionPixelOffset(resId)
-
 fun getColor(@ColorRes resId: Int) =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             context.getColor(resId)
@@ -68,8 +61,6 @@ fun getColor(@ColorRes resId: Int) =
         }
 
 fun getColor(color: String) = Color.parseColor(color)
-
-
 fun dp2px(value: Float): Int {
     val f = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
             value, getDisplayMetrics())
@@ -105,16 +96,16 @@ fun showKeyboard(act: Activity) {
         val imm = act.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(act.currentFocus!!, InputMethodManager.SHOW_FORCED)
     } catch (exception: NullPointerException) {
-        Logger.d("keyboard ,InputMethodManager can't find focus")
+        Log.d(TAG, "keyboard ,InputMethodManager can't find focus")
     }
 }
 
+@SuppressLint("MissingPermission")
 fun isNetworkAvailable(): Boolean {
     val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val ni = connectivityManager.activeNetworkInfo ?: return false
     return ni.isConnected || ni.isAvailable && ni.isConnectedOrConnecting
 }
-
 
 private fun getSize(): Point {
     val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -124,13 +115,13 @@ private fun getSize(): Point {
     return size
 }
 
-//fun getWinHeight(): Int {
-//    return getSize().y
-//}
-//
-//fun getWinWidth(): Int {
-//    return getSize().x
-//}
+fun getWinHeight(): Int {
+    return getSize().y
+}
+
+fun getWinWidth(): Int {
+    return getSize().x
+}
 
 fun getNavigationBarHeight(): Int {
     context.resources.let {
@@ -213,14 +204,12 @@ fun openAccessibilitySetting(context: Context) {
     context.startActivity(accessibleIntent)
 }
 
-
-
 fun getActivityRootView(activity: Activity): View {
     return activity.window.decorView.findViewById(R.id.content)
 }
 
-fun showSnackBar(@NotNull activity: Activity, message: String, duration: Int = Snackbar.LENGTH_SHORT) {
-    Snackbar.make(getActivityRootView(activity), message, Snackbar.LENGTH_SHORT)
+fun showSnackBar(@NotNull activity: Activity, message: String, duration: Int = android.support.design.widget.Snackbar.LENGTH_SHORT) {
+    Snackbar.make(getActivityRootView(activity), message, android.support.design.widget.Snackbar.LENGTH_SHORT)
             .setDuration(duration)
             .show()
 }
@@ -229,15 +218,15 @@ fun showSnackBar(@NotNull activity: Activity,
                  message: String,
                  actionMessage: String,
                  actionListener: View.OnClickListener,
-                 duration: Int = Snackbar.LENGTH_SHORT) {
-    Snackbar.make(getActivityRootView(activity), message, Snackbar.LENGTH_SHORT)
+                 duration: Int = android.support.design.widget.Snackbar.LENGTH_SHORT) {
+    Snackbar.make(getActivityRootView(activity), message, android.support.design.widget.Snackbar.LENGTH_SHORT)
             .setAction(actionMessage, actionListener)
             .setDuration(duration)
             .show()
 }
 
 fun showSnackBar(@NotNull activity: Activity, @StringRes res: Int) {
-    Snackbar.make(getActivityRootView(activity), getString(res), Snackbar.LENGTH_SHORT).show()
+    android.support.design.widget.Snackbar.make(getActivityRootView(activity), getString(res), android.support.design.widget.Snackbar.LENGTH_SHORT).show()
 }
 
 fun showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -255,8 +244,8 @@ fun showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
 
 // 检测开发者选项是否打开: 此方法可以检测Setting.Global下的所有设置是否打开
 fun checkDevelopSettings() = Settings.Secure.getInt(context.contentResolver, Settings.Global.DEVELOPMENT_SETTINGS_ENABLED) == 1
-fun checkUsbDebugSettings() = Settings.Secure.getInt(context.contentResolver, Settings.Global.ADB_ENABLED) == 1
 
+fun checkUsbDebugSettings() = Settings.Secure.getInt(context.contentResolver, Settings.Global.ADB_ENABLED) == 1
 fun getSDTotalSize(): String? {
     val sdPath = Environment.getExternalStorageDirectory()
     val statfs = StatFs(sdPath.path)
@@ -264,6 +253,7 @@ fun getSDTotalSize(): String? {
     val totalBlocks = statfs.blockCountLong
     return Formatter.formatFileSize(context, blockSize * totalBlocks)
 }
+
 fun getSDAvaildableSize(): String? {
     val sdPath = Environment.getExternalStorageDirectory()
     val statfs = StatFs(sdPath.path)

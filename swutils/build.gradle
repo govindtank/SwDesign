@@ -23,16 +23,36 @@ android {
     }
 }
 
+ext {
+    support_version = "26.1.0"
+    constraint_version = "1.0.2"
+    ac_version = "1.0.0-alpha9-1"
+    rxjava_version = "2.1.0"
+    rxandroid_version = "2.0.1"
+    rxkotlin_version = "2.0.3"
+    dagger_version = "2.11"
+    okhttp_version = "3.8.0"
+    wire_version = "2.2.0"
+    retrofit_version = "2.3.0"
+    anko_version = "0.10.1"
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "com.android.support:appcompat-v7:26.0.1"
+    compile "com.android.support:appcompat-v7:26.1.0"
+    compile "com.android.support:design:$support_version"
     testCompile 'junit:junit:4.12'
 
     /// Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    /// Rxjava2
+    compile "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    compile "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 }
 repositories {
     mavenCentral()

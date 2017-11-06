@@ -5,6 +5,7 @@ import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.BuildConfig
 import com.swensun.swdesign.database.DataBaseManager
+import com.swensun.swutils.util.SwUtils
 import org.jetbrains.anko.doAsync
 
 /**
@@ -17,6 +18,7 @@ class SwApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
+        SwUtils.init(this)
         Logger.addLogAdapter(object : AndroidLogAdapter() {
             override fun isLoggable(priority: Int, tag: String?): Boolean {
                 return BuildConfig.DEBUG
