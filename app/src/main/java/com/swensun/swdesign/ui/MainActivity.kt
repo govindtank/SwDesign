@@ -10,6 +10,8 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.swensun.swdesign.R
+import com.swensun.swdesign.base.showSnackBar
+import com.swensun.swdesign.base.showToast
 import com.swensun.swdesign.ui.animator.AnimatorActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
 import com.swensun.swdesign.ui.develop.DevelopHelpActivity
@@ -21,10 +23,13 @@ import com.swensun.swdesign.ui.scroll.ScrollingIntroActivity
 import com.swensun.swdesign.ui.touchevent.TouchEventActivity
 import com.swensun.swdesign.ui.viewpager.ViewPagerActivity
 import com.swensun.swdesign.viewmodel.MainViewModel
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -63,8 +68,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 //            developSettingIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 //          com.android.settings/.Settings$DevelopmentSettingsActivity
-
-
+            Observable.interval(1, TimeUnit.SECONDS)
+                    .take(10)
+                    .doOnComplete {
+                        showSnackBar(this, "complete")
+                        startActivity(Intent(this, MainActivity::class.java))
+                    }
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        showToast(it.toString(), 500)
+                    }
         }
     }
 

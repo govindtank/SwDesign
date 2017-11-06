@@ -33,7 +33,10 @@ import android.widget.TextView
 import android.widget.Toast
 import com.orhanobut.logger.Logger
 import com.swensun.swdesign.app.BaseApplication
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import org.jetbrains.annotations.NotNull
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -216,13 +219,20 @@ fun getActivityRootView(activity: Activity): View {
     return activity.window.decorView.findViewById(R.id.content)
 }
 
-fun showSnackBar(@NotNull activity: Activity, message: String) {
-    Snackbar.make(getActivityRootView(activity), message, Snackbar.LENGTH_SHORT).show()
+fun showSnackBar(@NotNull activity: Activity, message: String, duration: Int = Snackbar.LENGTH_SHORT) {
+    Snackbar.make(getActivityRootView(activity), message, Snackbar.LENGTH_SHORT)
+            .setDuration(duration)
+            .show()
 }
 
-fun showSnackBar(@NotNull activity: Activity, message: String, actionMessage: String, actionListener: View.OnClickListener) {
+fun showSnackBar(@NotNull activity: Activity,
+                 message: String,
+                 actionMessage: String,
+                 actionListener: View.OnClickListener,
+                 duration: Int = Snackbar.LENGTH_SHORT) {
     Snackbar.make(getActivityRootView(activity), message, Snackbar.LENGTH_SHORT)
             .setAction(actionMessage, actionListener)
+            .setDuration(duration)
             .show()
 }
 
@@ -230,8 +240,17 @@ fun showSnackBar(@NotNull activity: Activity, @StringRes res: Int) {
     Snackbar.make(getActivityRootView(activity), getString(res), Snackbar.LENGTH_SHORT).show()
 }
 
-fun showToast(message: String) {
-    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+fun showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    val toast = Toast.makeText(context, message, duration)
+    Observable.timer(duration.toLong(), TimeUnit.MILLISECONDS)
+            .doOnSubscribe {
+                toast.show()
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                toast.cancel()
+            }
+
 }
 
 // 检测开发者选项是否打开: 此方法可以检测Setting.Global下的所有设置是否打开

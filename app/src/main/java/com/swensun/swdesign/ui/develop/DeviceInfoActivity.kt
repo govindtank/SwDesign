@@ -1,6 +1,7 @@
 package com.swensun.swdesign.ui.develop
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import android.os.Build
@@ -41,7 +42,7 @@ class DeviceInfoActivity : AppCompatActivity() {
 
     inner class RecyclerViewAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-        private var mItemList = arrayListOf("系统信息", "屏幕信息", "硬件信息", "网络状态")
+        private var mItemList = arrayListOf("系统信息", "屏幕信息", "硬件信息", "网络状态", "应用列表")
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder? {
             val view = LayoutInflater.from(context).inflate(R.layout.view_device_info_item, parent, false)
@@ -77,10 +78,28 @@ class DeviceInfoActivity : AppCompatActivity() {
                     3 -> {
                         showNetWorkInfo()
                     }
+                    4 -> {
+                        showInstallAapps()
+                    }
                     else -> {}
                 }
             }
         }
+    }
+
+    private fun showInstallAapps() {
+        val apps = packageManager.getInstalledPackages(0)
+        val names = arrayListOf<String>()
+        apps.forEach {
+            if (it.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM <= 0) {
+                names.add(it.applicationInfo.loadLabel(packageManager).toString())
+            }
+        }
+        AlertDialog.Builder(this)
+                .setTitle("应用列表")
+                .setItems(names.toTypedArray(), { _, _ -> })
+                .setNegativeButton("取消", null)
+                .show()
     }
 
     private fun showNetWorkInfo() {
