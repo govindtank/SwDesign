@@ -3,13 +3,13 @@ package com.swensun.swdesign.ui
 import android.app.ActivityOptions
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
 import com.swensun.swdesign.ui.animator.AnimatorActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
@@ -22,7 +22,6 @@ import com.swensun.swdesign.ui.scroll.ScrollingIntroActivity
 import com.swensun.swdesign.ui.touchevent.TouchEventActivity
 import com.swensun.swdesign.ui.viewpager.ViewPagerActivity
 import com.swensun.swdesign.viewmodel.MainViewModel
-import com.swensun.swutils.util.getWinHeight
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -59,6 +58,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setView() {
 
         app_info_layout.setOnClickListener {
+
+
             //            val intent = Intent(this, PathMeasureActivity::class.java)
 //            val options = ActivityOptions.makeSceneTransitionAnimation(this, it, "sharedView")
 //            startActivity(intent, options.toBundle())
@@ -75,10 +76,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                    .subscribe {
 //                        showToast(it.toString(), 500)
 //                    }
-            val height = getWinHeight()
-            Logger.d(height)
+            var uri = Uri.parse("ks://profile/user/515481447?from=singlemessage")
+            var intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
         }
     }
+
+
+
+
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
