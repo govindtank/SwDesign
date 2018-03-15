@@ -11,10 +11,16 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.swensun.swdesign.R
+import com.swensun.swdesign.ui.animator.AnimatorActivity
+import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
 import com.swensun.swdesign.ui.develop.DevelopHelpActivity
 import com.swensun.swdesign.ui.develop.DeviceInfoActivity
 import com.swensun.swdesign.ui.guide.OnboardingActivity
 import com.swensun.swdesign.ui.ins.InstagramProActivity
+import com.swensun.swdesign.ui.recycler.RecyclerViewActivity
+import com.swensun.swdesign.ui.scroll.ScrollingIntroActivity
+import com.swensun.swdesign.ui.touchevent.TouchEventActivity
+import com.swensun.swdesign.ui.viewpager.ViewPagerActivity
 import com.swensun.swdesign.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -112,12 +118,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun goToAct(item: MenuItem) {
         val cls = when (item.itemId) {
-//            R.id.nav_recycler_view -> RecyclerViewActivity::class.java
-//            R.id.nav_scroll -> ScrollingIntroActivity::class.java
-//            R.id.nav_bottom_navigation -> BottomNavigationActivity::class.java
-//            R.id.nav_view_pager -> ViewPagerActivity::class.java
-//            R.id.nav_animator -> AnimatorActivity::class.java
-//            R.id.nav_touch_event -> TouchEventActivity::class.java
+            R.id.nav_recycler_view -> RecyclerViewActivity::class.java
+            R.id.nav_scroll -> ScrollingIntroActivity::class.java
+            R.id.nav_bottom_navigation -> BottomNavigationActivity::class.java
+            R.id.nav_view_pager -> ViewPagerActivity::class.java
+            R.id.nav_animator -> AnimatorActivity::class.java
+            R.id.nav_touch_event -> TouchEventActivity::class.java
             R.id.nav_ins_pro -> InstagramProActivity::class.java
             R.id.nav_ins_develop_help -> DevelopHelpActivity::class.java
             R.id.nav_ins_device_info -> DeviceInfoActivity::class.java
