@@ -3,7 +3,6 @@ package com.swensun.swdesign.ui
 import android.app.ActivityOptions
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -76,9 +75,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                    .subscribe {
 //                        showToast(it.toString(), 500)
 //                    }
-            var uri = Uri.parse("ks://profile/user/515481447?from=singlemessage")
-            var intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
+//            var uri = Uri.parse("ks://profile/user/515481447?from=singlemessage")
+//            var intent = Intent(Intent.ACTION_VIEW, uri)
+//            startActivity(intent)
         }
     }
 
