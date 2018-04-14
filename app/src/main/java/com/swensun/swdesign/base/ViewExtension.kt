@@ -8,8 +8,12 @@ import android.widget.TextView
 import com.swensun.swdesign.R
 import com.swensun.swutils.util.dp2px
 import com.swensun.swutils.util.showToast
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import org.jetbrains.anko.find
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 fun TextView.countDown() {
     val frameLayout = FrameLayout(context)
@@ -17,8 +21,29 @@ fun TextView.countDown() {
     val mobileView = rootView.find<EditText>(R.id.vcd_et_mobile)
     val codeView = rootView.find<EditText>(R.id.vcd_et_code)
     val sendCode = rootView.find<TextView>(R.id.vcd_tv_send_code)
+
+    var disposable: Disposable? = null
+    val countTimesObservable = Observable.interval(1, TimeUnit.SECONDS)
+            .take(10)
+            .doOnDispose {
+                Timber.d("取消订阅")
+            }
+            .doOnSubscribe {
+                Timber.d( "开始计时")
+                disposable = it
+            }.doOnComplete {
+                Timber.d( "结束计时")
+                sendCode.text = "发送验证码"
+                disposable?.dispose()
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+
     sendCode.setOnClickListener {
-        Timber.d("发送验证码")
+        countTimesObservable.subscribe {
+            val second = 9 - it
+            sendCode.text = "已发送($second)"
+            Timber.d(second.toString())
+        }
     }
 
     val lp = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
@@ -33,9 +58,11 @@ fun TextView.countDown() {
     AlertDialog.Builder(context).setTitle("手机号码")
             .setNegativeButton("取消", { _, _ ->
                 showToast("取消")
+                disposable?.dispose()
             })
             .setPositiveButton("确认", { _, _ ->
                 showToast("确认")
+                disposable?.dispose()
             })
             .setView(frameLayout)
             .show()
