@@ -12,6 +12,7 @@ import android.view.MenuItem
 import com.swensun.swdesign.R
 import com.swensun.swdesign.ui.animator.AnimatorActivity
 import com.swensun.swdesign.ui.bottom.BottomNavigationActivity
+import com.swensun.swdesign.ui.codeexample.CodeExampleActivity
 import com.swensun.swdesign.ui.develop.DevelopHelpActivity
 import com.swensun.swdesign.ui.develop.DeviceInfoActivity
 import com.swensun.swdesign.ui.guide.OnboardingActivity
@@ -117,6 +118,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun goToAct(item: MenuItem) {
         val cls = when (item.itemId) {
+            R.id.nav_code_example -> CodeExampleActivity::class.java
+
             R.id.nav_recycler_view -> RecyclerViewActivity::class.java
             R.id.nav_scroll -> ScrollingIntroActivity::class.java
             R.id.nav_bottom_navigation -> BottomNavigationActivity::class.java

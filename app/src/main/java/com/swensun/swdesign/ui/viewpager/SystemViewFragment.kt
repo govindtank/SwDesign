@@ -6,9 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.orhanobut.logger.Logger
-
 import com.swensun.swdesign.R
+import timber.log.Timber
 
 
 /**
@@ -24,6 +23,6 @@ class SystemViewFragment : Fragment() {
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        Logger.d(isVisibleToUser)
+        Timber.d(isVisibleToUser.toString())
     }
 }

@@ -3,10 +3,10 @@ package com.swensun.swdesign.ui.touchevent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MotionEvent
-import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
 import kotlinx.android.synthetic.main.activity_touch_event.*
 import kotlinx.android.synthetic.main.content_touch_event.*
+import timber.log.Timber
 
 class TouchEventActivity : AppCompatActivity() {
 
@@ -22,7 +22,7 @@ class TouchEventActivity : AppCompatActivity() {
 
     private fun initView() {
         custom_btn.setOnClickListener {
-            Logger.d("click custom btn")
+            Timber.d("click custom btn")
         }
         custom_btn.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
@@ -31,12 +31,12 @@ class TouchEventActivity : AppCompatActivity() {
             true
         }
         custom_card_view.setOnClickListener {
-            Logger.d("click custom card view")
+            Timber.d("click custom card view")
         }
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        Logger.d("onTouchEvent")
+        Timber.d("onTouchEvent")
         return super.onTouchEvent(event)
     }
 

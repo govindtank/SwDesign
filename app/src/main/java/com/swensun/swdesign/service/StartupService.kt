@@ -3,7 +3,7 @@ package com.swensun.swdesign.service
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import com.orhanobut.logger.Logger
+import timber.log.Timber
 
 
 /**
@@ -18,22 +18,22 @@ class StartupService : Service() {
     }
     override fun onCreate() {
         super.onCreate()
-        Logger.d("onCreate")
+        Timber.d("onCreate")
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        Logger.d("onStartCommand")
+        Timber.d("onStartCommand")
         return super.onStartCommand(intent, flags, startId)
 
     }
 
     override fun onBind(intent: Intent): IBinder? {
-        Logger.d("onBind")
+        Timber.d("onBind")
         return null
     }
 
     override fun onDestroy() {
-        Logger.e("onDestroy")
+        Timber.e("onDestroy")
         super.onDestroy()
     }
 }

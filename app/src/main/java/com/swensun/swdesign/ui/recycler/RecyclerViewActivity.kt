@@ -15,7 +15,6 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
 import com.swensun.swdesign.database.entity.DoubanMovieEntity
 import com.swensun.swdesign.viewmodel.RecyclerViewModel
@@ -23,6 +22,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_recycler_view.*
 import kotlinx.android.synthetic.main.content_recycler_view.*
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 class RecyclerViewActivity : AppCompatActivity(){
@@ -71,12 +71,12 @@ class RecyclerViewActivity : AppCompatActivity(){
         val searchView: SearchView = menuItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Logger.d(query)
+                Timber.d(query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                Logger.d(newText)
+                Timber.d(newText)
                 return false
             }
 

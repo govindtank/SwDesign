@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Code Example">
+        <menu>
+            <item android:id="@+id/nav_code_example"
+                android:icon="@drawable/ic_recycler_view_black"
+                android:title="Code Example"
+                />
+        </menu>
+    </item>
     <item android:title="UI and Anim">
         <menu>
             <item
                 android:id="@+id/nav_recycler_view"
                 android:icon="@drawable/ic_recycler_view_black"
-                android:title="RecycleView"
-                />
+                android:title="RecycleView" />
             <item
                 android:id="@+id/nav_scroll"
                 android:icon="@drawable/ic_scroll_black"
-                android:title="Scrolling"
-                />
+                android:title="Scrolling" />
             <item
                 android:id="@+id/nav_bottom_navigation"
                 android:icon="@drawable/ic_bottom_navigation_black_24dp"
-                android:title="BottomNavigation"
-                />
+                android:title="BottomNavigation" />
             <item
                 android:id="@+id/nav_view_pager"
                 android:icon="@drawable/ic_view_pager_black_24dp"
-                android:title="ViewPager"
-                />
+                android:title="ViewPager" />
             <item
                 android:id="@+id/nav_animator"
                 android:icon="@drawable/ic_animator_black_48dp"
-                android:title="Animator"
-                />
+                android:title="Animator" />
         </menu>
 
     </item>
@@ -36,19 +39,19 @@
             <item
                 android:id="@+id/nav_touch_event"
                 android:icon="@drawable/ic_animator_black_48dp"
-                android:title="TouchEvent"/>
+                android:title="TouchEvent" />
             <item
                 android:id="@+id/nav_ins_pro"
                 android:icon="@drawable/ic_animator_black_48dp"
-                android:title="InsPro"/>
+                android:title="InsPro" />
             <item
                 android:id="@+id/nav_ins_develop_help"
                 android:icon="@drawable/ic_animator_black_48dp"
-                android:title="@string/nav_develop_help"/>
+                android:title="@string/nav_develop_help" />
             <item
                 android:id="@+id/nav_ins_device_info"
                 android:icon="@drawable/ic_animator_black_48dp"
-                android:title="@string/nav_device_info"/>
+                android:title="@string/nav_device_info" />
         </menu>
     </item>
 

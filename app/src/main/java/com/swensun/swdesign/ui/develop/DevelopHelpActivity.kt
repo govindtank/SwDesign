@@ -12,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
 import com.swensun.swdesign.service.DevelopAction
 import com.swensun.swdesign.service.DevelopData
@@ -21,6 +20,7 @@ import com.swensun.swdesign.ui.MainActivity
 import com.swensun.swutils.util.*
 import kotlinx.android.synthetic.main.activity_develop_help.*
 import kotlinx.android.synthetic.main.content_develop_help.*
+import timber.log.Timber
 
 
 class DevelopHelpActivity : AppCompatActivity() {
@@ -105,11 +105,11 @@ class DevelopHelpActivity : AppCompatActivity() {
                                     "去关闭",
                                     View.OnClickListener {
                                         // 去关闭
-                                        Logger.d("close ")
+                                        Timber.d("close ")
                                         openDevelopSetting(entity)
                                     })
                         } else {
-                            Logger.d("go to open")
+                            Timber.d("go to open")
                             openDevelopSetting(entity)
                         }
                     }
@@ -121,11 +121,11 @@ class DevelopHelpActivity : AppCompatActivity() {
                                     "去关闭",
                                     View.OnClickListener {
                                         // 去关闭
-                                        Logger.d("close ")
+                                        Timber.d("close ")
                                         openDevelopSetting(entity)
                                     })
                         } else {
-                            Logger.d("go to open")
+                            Timber.d("go to open")
                             openDevelopSetting(entity)
                         }
                     }
@@ -153,7 +153,7 @@ class DevelopHelpActivity : AppCompatActivity() {
                     .setMessage(R.string.string_apply_develop_tips)
                     .setNegativeButton(R.string.cancle, null)
                     .setPositiveButton(R.string.comfirm, { _, which ->
-                        Logger.d("to open" + which)
+                        Timber.d("to open$which")
                         //跳转到无障碍服务页面
                         openAccessibilitySetting(this@DevelopHelpActivity)
                     })

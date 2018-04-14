@@ -13,13 +13,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.orhanobut.logger.Logger
 import com.swensun.swdesign.R
 import com.swensun.swutils.util.dp2px
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_dialog.*
+import timber.log.Timber
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -41,7 +41,7 @@ class DialogFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        Logger.d(isVisibleToUser)
+        Timber.d(isVisibleToUser.toString())
 //        if (!isVisibleToUser) return
         btn_dialog_1.setOnClickListener {
 
@@ -72,19 +72,11 @@ class DialogFragment : Fragment() {
         }
         btn_dialog_3.setOnClickListener {
             val titleList = arrayOf("卡片", "对话框", "系统控件")
-//            AlertDialog.Builder(context)
-//                    .setTitle("单选对话框")
-//                    .setSingleChoiceItems(titleList, 0, { dialogInterface, i ->
-//                        Logger.d(titleList[i])
-//                        dialogInterface.dismiss()
-//                    })
-//                    .setNegativeButton("取消", null)
-//                    .show()
             context?.let { it1 ->
                 AlertDialog.Builder(it1)
                         .setTitle("单选对话框")
                         .setItems(titleList, { dialog, which ->
-                            Logger.d(titleList[which])
+                            Timber.d(titleList[which])
                             dialog.dismiss()
                         })
                         .setNegativeButton("取消", null)
@@ -98,7 +90,7 @@ class DialogFragment : Fragment() {
                 AlertDialog.Builder(it1)
                         .setTitle("多选对话框")
                         .setMultiChoiceItems(titleList, checkedItems, { _, i, isChecked ->
-                            Logger.d(titleList[i]  + "--" + isChecked)
+                            Timber.d(titleList[i]  + "--" + isChecked)
                         })
                         .setPositiveButton("确认", null)
                         .setNegativeButton("取消", null)
@@ -146,7 +138,7 @@ class DialogFragment : Fragment() {
                 calendar.set(Calendar.MONTH, monthOfYear)
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 val date = year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth
-                Logger.d(date)
+                Timber.d(date)
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
             datePickerDialog.show()
         }
@@ -155,7 +147,7 @@ class DialogFragment : Fragment() {
             val timePickerDialog = TimePickerDialog(context, TimePickerDialog.OnTimeSetListener { _, i, i1 ->
                 calendar.set(Calendar.HOUR_OF_DAY, i)
                 calendar.set(Calendar.MINUTE, i1)
-                Logger.d("$i : $i1")
+                Timber.d("$i : $i1")
             }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true)
             timePickerDialog.show()
         }
@@ -187,6 +179,6 @@ class DialogFragment : Fragment() {
         // 控制fragment可见，每次tab切换都会调用
         super.setUserVisibleHint(isVisibleToUser)
         this.isVisibleToUser = isVisibleToUser
-        Logger.d(isVisibleToUser)
+        Timber.d(isVisibleToUser.toString())
     }
 }

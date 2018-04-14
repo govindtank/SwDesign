@@ -14,7 +14,6 @@ class CustomCardView @JvmOverloads constructor(
 ) : CardView(context, attrs, defStyleAttr) {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-//        Logger.d(event?.action)
         return super.onTouchEvent(event)
     }
 }

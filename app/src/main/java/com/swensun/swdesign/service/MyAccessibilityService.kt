@@ -5,11 +5,11 @@ import android.content.Intent
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
-import com.orhanobut.logger.Logger
 import com.swensun.swdesign.ui.ins.InsAction
 import com.swensun.swdesign.ui.ins.InsSetting
 import com.swensun.swdesign.ui.ins.InstagramProActivity
 import io.reactivex.Observable
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 /**
@@ -34,7 +34,7 @@ class MyAccessibilityService: AccessibilityService() {
 
     override fun onServiceConnected() {
         super.onServiceConnected()
-        Logger.d("connect to accessibilityService")
+        Timber.d("connect to accessibilityService")
         initSubject()
 
     }
