@@ -67,3 +67,68 @@ fun TextView.countDown() {
             .setView(frameLayout)
             .show()
 }
+
+fun add1(a: Int, b: Int): Int {
+    return a + b
+}
+
+fun add2(a: Int, b: Int) = a + b
+
+val add3 = {a: Int, b: Int -> a + b}
+
+fun add4(): (Int, Int) -> Int {
+    return ::add2
+}
+
+fun add5() = {
+    add3
+}
+
+val add5_1 = {
+    val temp = 3 + 4
+    temp + 10
+}
+
+val add5_2 = 10
+
+fun add5_1() = {
+    val temp = 4 + 5
+    10 + temp
+}
+
+fun add5_2(): Int {
+    return 10
+}
+
+val add5_3_1 = {
+    val temp = 10
+    {a: Int -> a + temp}
+}
+
+
+fun add5_3_2() = {
+    val temp = 10
+    {a: Int -> a + temp}
+}
+
+
+val add6 = add3
+
+
+fun add7(): (Int, Int) -> Int {
+    return fun(a: Int, b: Int): Int {
+        return a + b
+    }
+}
+
+fun add8(): (Int, Int) -> Int {
+    return {a: Int, b: Int -> a + b}
+}
+
+val add9 = {a: Int, b: Int -> a + b}
+
+
+fun calculate(a: Int, b: Int, f: (Int, Int) -> Int) : Int {
+    return f(a, b)
+}
+

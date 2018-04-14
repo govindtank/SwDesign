@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.swensun.swdesign.R
+import com.swensun.swdesign.base.add5_3_1
+import com.swensun.swdesign.base.add5_3_2
 import com.swensun.swdesign.base.countDown
 import com.swensun.swdesign.viewmodel.CodeExampleViewModel
 import kotlinx.android.synthetic.main.activity_code_example.*
@@ -51,7 +53,37 @@ class CodeExampleActivity : AppCompatActivity() {
                         codeBtn.countDown()
                     }
                     1 -> {
-                        Timber.d("position: $position")
+//                        Timber.d("函数对象计算结果：${add3(3, 5)}")
+//                        val result = calculate(2, 3, add3)
+//                        Timber.d("计算结果为: $result")
+//                        val addFour = addFour()
+//                        Timber.d("+ 5:${addFour(5)}")
+//                        Timber.d("+ 6:${addFour(6)}")
+
+//                        val addF = add7()
+//
+//                        val addFF = add8()
+//                        Timber.d("函数add4(): ${add7()}")
+//                        Timber.d("函数对象addF: $addF")
+//
+//                        Timber.d("函数add5(): ${add8()}")
+//                        Timber.d("函数addFF: $addFF")
+//
+//                        Timber.d("函数add9: $add9")
+//
+//                        Timber.d("函数对象addF计算结果：${addF(1, 2)}")
+//                        Timber.d("函数add7()计算结果: ${add7()(3, 4)}")
+//
+//
+//                        Timber.d("函数addFF计算结果: ${addFF(4, 5)}")
+//                        Timber.d("函数add8()计算结果: ${add8()(6, 7)}")
+
+//                        val addF = add5()
+//                        val addFF = add8()
+
+
+                        Timber.d("${add5_3_1()(15)}")
+                        Timber.d("${add5_3_2()()(15)}")
                     }
                 }
             }
