@@ -30,33 +30,38 @@ android {
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 ext {
-    support_version = "26.1.0"
+    support_version = "27.1.1"
     constraint_version = "1.0.2"
-    ac_version = "1.0.0-alpha9-1"
+    ac_version = "1.1.1"
+    room_version = "1.0.0"
     rxjava_version = "2.1.0"
-    rxandroid_version = "2.0.1"
+    rxandroid_version = "2.0.2"
     rxkotlin_version = "2.0.3"
-    dagger_version = "2.11"
+    dagger_version = "2.14.1"
     okhttp_version = "3.8.0"
     wire_version = "2.2.0"
     retrofit_version = "2.3.0"
     anko_version = "0.10.1"
+    glide_version = "4.6.1"
 }
 
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation project(path: ':swutils')
-
-    androidTestCompile 'com.google.code.findbugs:jsr305:3.0.1'
-    testCompile 'junit:junit:4.12'
+    androidTestImplementation 'com.google.code.findbugs:jsr305:3.0.1'
+    testImplementation 'junit:junit:4.12'
 
     /// Support Libraries
     implementation "com.android.support:appcompat-v7:$support_version"
@@ -64,52 +69,49 @@ dependencies {
     implementation "com.android.support:design:$support_version"
     implementation "com.android.support.constraint:constraint-layout:$constraint_version"
     implementation "com.android.support:cardview-v7:$support_version"
-    compile "com.android.support:transition:$support_version"
+    implementation "com.android.support:transition:$support_version"
 
     /// Architecture Components
-    compile "android.arch.lifecycle:runtime:$ac_version"
-    compile "android.arch.lifecycle:extensions:$ac_version"
+    implementation "android.arch.lifecycle:runtime:$ac_version"
+    implementation "android.arch.lifecycle:extensions:$ac_version"
     kapt "android.arch.lifecycle:compiler:$ac_version"
+
     /// Room
-    compile "android.arch.persistence.room:runtime:$ac_version"
-    kapt "android.arch.persistence.room:compiler:$ac_version"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
 
     /// Rxjava2
-    compile "io.reactivex.rxjava2:rxjava:$rxjava_version"
-    compile "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
-    compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
     /// Dagger2
-    compile "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    compile "com.google.dagger:dagger-android:$dagger_version"
-    compile "com.google.dagger:dagger-android-support:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
     /// Okhttp3
-    compile "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
     /// Wire
-    compile "com.squareup.wire:wire-runtime:$wire_version"
+    implementation "com.squareup.wire:wire-runtime:$wire_version"
 
     /// Retrofit2
-    compile("com.squareup.retrofit2:retrofit:$retrofit_version") {
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version") {
         exclude(module: 'okhttp')
     }
-    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    compile "com.squareup.retrofit2:converter-wire:$retrofit_version"
-
-    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-wire:$retrofit_version"
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
 
     /// Glide
-    compile "com.github.bumptech.glide:glide:4.0.0-RC1"
-    kapt "com.github.bumptech.glide:compiler:4.0.0-RC1"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     //logger
-    compile 'com.orhanobut:logger:2.1.1'
-
-    compile "org.jetbrains.anko:anko:$anko_version"
-
+    implementation 'com.orhanobut:logger:2.1.1'
+    implementation "org.jetbrains.anko:anko:$anko_version"
 }
-

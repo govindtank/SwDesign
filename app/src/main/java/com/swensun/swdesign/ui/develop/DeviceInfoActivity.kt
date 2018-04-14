@@ -44,7 +44,7 @@ class DeviceInfoActivity : AppCompatActivity() {
 
         private var mItemList = arrayListOf("系统信息", "屏幕信息", "硬件信息", "网络状态", "应用列表")
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder? {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             val view = LayoutInflater.from(context).inflate(R.layout.view_device_info_item, parent, false)
             return NormalItemViewHolder(itemView = view)
         }

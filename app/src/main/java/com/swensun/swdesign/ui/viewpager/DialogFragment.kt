@@ -33,14 +33,14 @@ class DialogFragment : Fragment() {
     var isVisibleToUser = false
 
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater?.inflate(R.layout.fragment_dialog, container, false)
+        return inflater.inflate(R.layout.fragment_dialog, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         Logger.d(isVisibleToUser)
 //        if (!isVisibleToUser) return
         btn_dialog_1.setOnClickListener {
@@ -54,17 +54,21 @@ class DialogFragment : Fragment() {
             input.layoutParams = lp
             frameLayout.addView(input)
 
-            AlertDialog.Builder(context).setTitle("简单对话框")
-//                    .setMessage("这是一个简单对话框")
-                    .setPositiveButton("确认", null)
-                    .setView(frameLayout)
-                    .show()
+            context?.let {
+                AlertDialog.Builder(it).setTitle("简单对话框")
+    //                    .setMessage("这是一个简单对话框")
+                        .setPositiveButton("确认", null)
+                        .setView(frameLayout)
+                        .show()
+            }
         }
         btn_dialog_2.setOnClickListener {
-            AlertDialog.Builder(context).setTitle("简单对话框").setMessage("这是一个可取消的简单对话框")
-                    .setPositiveButton("确认", null)
-                    .setNegativeButton("取消", null)
-                    .show()
+            context?.let { it1 ->
+                AlertDialog.Builder(it1).setTitle("简单对话框").setMessage("这是一个可取消的简单对话框")
+                        .setPositiveButton("确认", null)
+                        .setNegativeButton("取消", null)
+                        .show()
+            }
         }
         btn_dialog_3.setOnClickListener {
             val titleList = arrayOf("卡片", "对话框", "系统控件")
@@ -76,36 +80,42 @@ class DialogFragment : Fragment() {
 //                    })
 //                    .setNegativeButton("取消", null)
 //                    .show()
-            AlertDialog.Builder(context)
-                    .setTitle("单选对话框")
-                    .setItems(titleList, { dialog, which ->
-                        Logger.d(titleList[which])
-                        dialog.dismiss()
-                    })
-                    .setNegativeButton("取消", null)
-                    .show()
+            context?.let { it1 ->
+                AlertDialog.Builder(it1)
+                        .setTitle("单选对话框")
+                        .setItems(titleList, { dialog, which ->
+                            Logger.d(titleList[which])
+                            dialog.dismiss()
+                        })
+                        .setNegativeButton("取消", null)
+                        .show()
+            }
         }
         btn_dialog_4.setOnClickListener {
             val titleList = arrayOf("卡片", "对话框", "系统控件")
             val checkedItems = booleanArrayOf(true, false, false)
-            AlertDialog.Builder(context)
-                    .setTitle("多选对话框")
-                    .setMultiChoiceItems(titleList, checkedItems, { _, i, isChecked ->
-                        Logger.d(titleList[i]  + "--" + isChecked)
-                    })
-                    .setPositiveButton("确认", null)
-                    .setNegativeButton("取消", null)
-                    .show()
+            context?.let { it1 ->
+                AlertDialog.Builder(it1)
+                        .setTitle("多选对话框")
+                        .setMultiChoiceItems(titleList, checkedItems, { _, i, isChecked ->
+                            Logger.d(titleList[i]  + "--" + isChecked)
+                        })
+                        .setPositiveButton("确认", null)
+                        .setNegativeButton("取消", null)
+                        .show()
+            }
         }
         btn_dialog_5.setOnClickListener {
 //            ProgressBar(context).apply {
 //                setMessage("加载中...")
 //            }.show()
             val progressBar = ProgressBar(context, null, R.attr.indeterminateProgressStyle)
-            AlertDialog.Builder(context)
-                    .setMessage("加载中...")
-                    .setView(R.layout.dialog_progress)
-                    .show()
+            context?.let { it1 ->
+                AlertDialog.Builder(it1)
+                        .setMessage("加载中...")
+                        .setView(R.layout.dialog_progress)
+                        .show()
+            }
 
         }
         btn_dialog_6.setOnClickListener {
@@ -150,7 +160,7 @@ class DialogFragment : Fragment() {
             timePickerDialog.show()
         }
         btn_dialog_9.setOnClickListener {
-            val bottomSheetDialog = BottomSheetDialog(context)
+            val bottomSheetDialog = BottomSheetDialog(context!!)
             val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_bottom_sheet, null)
             val okBtn: Button = dialogView.findViewById(R.id.ok_btn)
             okBtn.setOnClickListener { bottomSheetDialog.dismiss() }

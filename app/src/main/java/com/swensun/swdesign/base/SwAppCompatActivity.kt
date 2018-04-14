@@ -1,7 +1,7 @@
 package com.swensun.swdesign.base
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.LifecycleRegistryOwner
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -13,7 +13,8 @@ import com.swensun.swutils.util.isShouldHideInput
  * Created by on 2017/5/3.
  */
 
-open class SwAppCompatActivity : AppCompatActivity(), LifecycleRegistryOwner{
+@SuppressLint("Registered")
+open class SwAppCompatActivity : AppCompatActivity(){
     override fun getLifecycle(): LifecycleRegistry {
         return LifecycleRegistry(this)
     }

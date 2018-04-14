@@ -49,5 +49,6 @@
     <string name="comfirm">确认</string>
     <string name="nav_device_info">设备信息</string>
     <string name="title_activity_device_info">DeviceInfoActivity</string>
+    <string name="title_activity_code_example">CodeExampleActivity</string>
 
 </resources>

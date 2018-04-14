@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.3'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -21,14 +21,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 ext {
-    support_version = "26.1.0"
+    support_version = "27.1.1"
     constraint_version = "1.0.2"
     ac_version = "1.0.0-alpha9-1"
     rxjava_version = "2.1.0"
-    rxandroid_version = "2.0.1"
+    rxandroid_version = "2.0.2"
     rxkotlin_version = "2.0.3"
     dagger_version = "2.11"
     okhttp_version = "3.8.0"
@@ -38,21 +42,19 @@ ext {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "com.android.support:appcompat-v7:26.1.0"
-    compile "com.android.support:design:$support_version"
-    testCompile 'junit:junit:4.12'
-
+    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support:design:$support_version"
+    testImplementation 'junit:junit:4.12'
     /// Kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     /// Rxjava2
-    compile "io.reactivex.rxjava2:rxjava:$rxjava_version"
-    compile "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
-    compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 }
 repositories {
     mavenCentral()

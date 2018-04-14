@@ -147,6 +147,10 @@
             android:name=".ui.develop.DeviceInfoActivity"
             android:label="@string/title_activity_device_info"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.codeexample.CodeExampleActivity"
+            android:label="@string/title_activity_code_example"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

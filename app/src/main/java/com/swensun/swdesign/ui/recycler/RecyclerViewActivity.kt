@@ -100,7 +100,7 @@ class RecyclerViewActivity : AppCompatActivity(){
 
         var mItemList = arrayListOf<DoubanMovieEntity>()
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder? {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             val view = LayoutInflater.from(context).inflate(R.layout.view_normal_item, parent, false)
             return NormalItemViewHolder(itemView = view)
         }

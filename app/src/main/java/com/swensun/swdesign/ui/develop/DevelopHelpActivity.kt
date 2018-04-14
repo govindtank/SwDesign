@@ -50,7 +50,7 @@ class DevelopHelpActivity : AppCompatActivity() {
 
         private var mItemList = arrayListOf<DevelopData>()
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder? {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             val view = LayoutInflater.from(context).inflate(R.layout.view_develop_settings_item, parent, false)
             return NormalItemViewHolder(itemView = view)
         }
