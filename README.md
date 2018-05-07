@@ -1,3 +1,5 @@
+![version](https://img.shields.io/badge/version-v1.1.0-yellowgreen.svg)  ![release](https://img.shields.io/badge/realease-v1.0.0-green.svg) 
+
 若adme# SWDesign
 
 这是一个使用Android Architecture Components + Rxjava2 + Dagger2 + Material Design 完成的demo，包含了android5.0以上的material design的控件的基本使用，不断更新中。
