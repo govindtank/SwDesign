@@ -1,4 +1,4 @@
-![version](https://img.shields.io/badge/version-v1.1.0-yellowgreen.svg)  ![release](https://img.shields.io/badge/realease-v1.0.0-green.svg) 
+[![version](https://img.shields.io/badge/version-v1.1.0-yellowgreen.svg)](https://github.com/yunshuipiao/SwDesign)  ![release](https://img.shields.io/badge/realease-v1.0.0-green.svg) 
 
 若adme# SWDesign
 
